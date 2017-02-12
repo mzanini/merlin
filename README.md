@@ -12,12 +12,12 @@ Run the tests with a simple:
 ```
 npm run test
 ```
-
 ## Deployment
 
 DeeMemory uses a [two package.json structure](https://github.com/electron-userland/electron-builder/wiki/Two-package.json-Structure). All files under \app will be included in the application.
 
 Build for Windows:
+
 1. Make sure the docker daemon is running:
     ```
     sudo systemctl start docker

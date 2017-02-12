@@ -1,0 +1,55 @@
+{
+  "name": "deeMemory",
+  "productName": "DeeMemory",
+  "version": "1.0.0",
+  "description": "A tool to help a Dungeon Master",
+  "license": "MIT",
+  "repository": "user/repo",
+  "author": {
+    "name": "Marco Zanini",
+    "email": "chetto87+deeMemory@gmail.com",
+    "url": "http://www.marcozanini.it"
+  },
+  "build": {
+    "appId": "deeMemory.id",
+    "linux": {
+      "target": "pacman"
+    }
+  },
+  "scripts": {
+    "postinstall": "install-app-deps",
+    "test": "jest --verbose",
+    "start": "electron app",
+    "build": "electron-packager . --out=dist --asar --overwrite --all",
+    "pack": "build --dir",
+    "dist": "build",
+    "distWin": "build --win",
+    "dev": "webpack --progress --colors --watch"
+  },
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.22.2",
+    "babel-core": "^6.22.1",
+    "babel-jest": "^18.0.0",
+    "babel-loader": "^6.2.10",
+    "babel-polyfill": "^6.22.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
+    "devtron": "^1.1.0",
+    "electron": "^1.4.15",
+    "electron-builder": "^8.6.0",
+    "electron-packager": "^8.5.1",
+    "electron-react-devtools": "^0.4.0",
+    "jest": "^18.1.0",
+    "readline": "^1.3.0",
+    "webpack": "^1.14.0",
+    "xo": "^0.16.0"
+  },
+  "xo": {
+    "esnext": true,
+    "envs": [
+      "node",
+      "browser"
+    ]
+  }
+}

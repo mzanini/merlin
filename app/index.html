@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Dee Memory</title>
+		<link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+	</head>
+	<body>
+
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="index.html">Roll Die</a></li>
+        <li role="presentation"><a href="roll_character.html">Character</a></li>
+    </ul>
+    <ul class="nav nav-pills" role="tablist">
+        <li role="presentation" class="active" id="tabPercentile"><a id="btnPercentile" href="#">Percentile</a></li>
+        <li role="presentation" id="tabThousand"><a id="btnThousand" href="#">1 - 1000</a></li>
+        <li role="presentation" id="tabVariable"><a id="btnVariable" href="#">Variable</a></li>
+    </ul>
+
+    <div class="row">
+      <div  class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <form id="rolling_options" class="hidden">
+  				<div class="form-group">
+            Faces:
+  					<select class="form-control" name="die_faces">
+  					  <option value="4" selected>4</option>
+  					  <option value="6">6</option>
+  					  <option value="8">8</option>
+  					  <option value="10">10</option>
+  					  <option value="12">12</option>
+  					</select>
+  					Adjust:<input type="number" class="form-control" name="die_adjust">
+  				</div>
+        </form>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <form>
+              <div id="die_number" class="form-group">
+      					Number of:<input type="number" class="form-control" name="number_of" value="1">
+      				</div>
+            </form>
+          </div>
+          <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+            <button type="button" id="roll_dice" class="btn btn-large">Roll</button>
+          </div>
+    </div>
+
+    <div class="row">
+      <div  class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+      </div>
+      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 well" id="dice_result">
+      </div>
+      <div  class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+      </div>
+    </div>
+
+    <div class="row">
+      <div  class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+      </div>
+      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+        <button type="button" class="btn btn-xs btn-success" id="btnClear">Clear</button>
+      </div>
+      <div  class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+      </div>
+    </div>
+
+    <script>window.$ = window.jQuery = require('jquery');</script>
+    <script>
+    require('./dist/rollDice.js')
+    </script>
+	</body>
+</html>

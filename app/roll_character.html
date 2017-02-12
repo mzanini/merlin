@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Dee Memory</title>
+  <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+  <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation"><a href="index.html">Roll Die</a></li>
+      <li role="presentation" class="active"><a href="roll_character.html">Character</a></li>
+  </ul>
+  <ul class="nav nav-pills" role="tablist">
+      <li role="presentation" class="active" id="tabSingleCharacter"><a id="btnSingleCharacter" href="#">Single Character</a></li>
+      <li role="presentation" id="tabMultipleCharacters"><a id="btnMultipleCharacters" href="#">Multiple Characters</a></li>
+  </ul>
+  <div class="container-fluid">
+    <div class="row" id="main"></div>
+  </div>
+
+  <script>window.$ = window.jQuery = require('jquery');</script>
+  <script>
+    require('./dist/rollCharacter.js')
+  </script>
+</body>
+</html>

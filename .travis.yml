@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "node"
+os:
+  - linux
+env:
+  - TARGET_ARCH=x64
+
+branches:
+  only:
+    - master

@@ -2,7 +2,7 @@
 
 # DeeMemory
 
-DeeMemory is that software that every Dungeon Master always wanted to have. It is designed to provide the DM with all the information he/she needs, when they are needed. DeeMemory is designed to be world-agnostic. This means that all the specifications about the world that is played are loaded via user-generated tables.
+DeeMemory is that software that every Dungeon Master always wanted to have. It is designed to provide the DM with all the information he/she needs, when they are needed. DeeMemory is designed to be world-agnostic. This means that all the specifications about the world that is played are loaded via [user-generated tables](docs/Tables.md).
 
 Even if DeeMemory is world-agnostic, it was originally created to play DT Sanders's world, you can find out more about him in the [credits](#credits) section.
 

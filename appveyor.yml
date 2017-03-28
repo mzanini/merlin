@@ -17,3 +17,7 @@ build_script:
   - npm run dist
 
 test: off
+
+artifacts:
+  - path: \dist\*.exe
+    name: DeeMemory

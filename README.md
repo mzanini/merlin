@@ -1,5 +1,6 @@
 [![Travis Build Status](https://travis-ci.org/mzanini/DeeMemory.svg?branch=master)](https://travis-ci.org/mzanini/DeeMemory)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/8gnefkiu0lp7d2dl/branch/master?svg=true)](https://ci.appveyor.com/project/mzanini/deememory/branch/master)
+[![devDependency Status](https://david-dm.org/mzanini/DeeMemory/dev-status.svg)](https://david-dm.org/mzanini/DeeMemory?type=dev)
 
 
 # DeeMemory

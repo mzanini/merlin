@@ -34,7 +34,7 @@ function createSelectTablesWindow() {
 		height: 200
 	});
 
-	win.loadURL(`file://${__dirname}/tables-select.html`);
+	win.loadURL(`file://${__dirname}/app/tables-select.html`);
 	win.on('closed', () => {selectTablesWindow=null});
 
 	return win;

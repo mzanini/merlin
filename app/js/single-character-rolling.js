@@ -8,7 +8,6 @@ import RollControl from "./roll-control"
 import InfoColumn from "./info-column"
 import { loadJSON, socialClassProbability } from "./utils.js"
 import settings from 'electron-settings'
-import JsonToCsvTranslator from './json-to-csv-translator'
 import fs from 'fs'
 import json2csv from 'json2csv'
 const {dialog} = require('electron').remote
@@ -106,7 +105,7 @@ export default class SingleCharacterRolling extends React.Component {
     return (
       <div>
         <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2"><RollControl buttonsState = {this.state.buttonsState} rollRace={this.rollRace} rollSocialClass={this.rollSocialClass} rollMinors={this.rollMinors} rollStats={this.rollStats} rollAll={this.rollAll}/>
-        <JsonToCsvTranslator clickThisBaby={this.exportCurrentCharacter}/>
+        <button type="button" className="btn btn-default btn-md" onClick={this.exportCurrentCharacter}>Export to CSV</button>
         </div>
         <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6"><InfoColumn info={this.state.info}/></div>
         <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4"><Character character={this.state.character}/></div>

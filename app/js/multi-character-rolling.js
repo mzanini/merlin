@@ -3,6 +3,9 @@ import { loadJSON } from "./utils.js"
 import Character from "./character"
 import CharacterModel from "./character-model"
 import settings from 'electron-settings'
+import json2csv from 'json2csv'
+const {dialog} = require('electron').remote
+import fs from 'fs'
 
 export default class MultiCharacterRolling extends React.Component {
   constructor(props) {
@@ -18,6 +21,7 @@ export default class MultiCharacterRolling extends React.Component {
     this.rollAll = this.rollAll.bind(this);
     this.clearAll = this.clearAll.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.exportToCsv = this.exportToCsv.bind(this);
   }
 
   handleChange(event) {
@@ -54,6 +58,14 @@ export default class MultiCharacterRolling extends React.Component {
     this.minorAbilities = response;
   }
 
+  exportToCsv() {
+      var result = json2csv({data: this.state.characters})
+      dialog.showSaveDialog({ filters:[{ name: 'CSV', extensions: ['csv'] }] },
+        filename => {
+         fs.writeFile(filename, result, err => { if(err){return console.log(err); }})
+        })
+  }
+
   componentWillMount() {
     settings.get('racesTablePath').then(value => { loadJSON(value, this.updateRaces.bind(this)) })
     settings.get('socialClassesTablePath').then(value => { loadJSON(value, this.updateSocialClasses.bind(this)) })
@@ -71,6 +83,7 @@ export default class MultiCharacterRolling extends React.Component {
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6 btn-toolbar">
             <button type="button" className="btn btn-success btn-large" onClick={this.rollAll}>Roll</button>
             <button type="button" className="btn btn-warning btn-large" onClick={this.clearAll}>Clear</button>
+            <button type="button" className="btn btn-large" onClick={this.exportToCsv}>Export to CSV</button>
           </div>
         </div>
         <div className="row">

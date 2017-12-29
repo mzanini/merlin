@@ -1,7 +1,7 @@
 var debug = process.env.NODE_ENV !== "production";
 
 module.exports = {
-  context: __dirname + "/app",
+  context: __dirname + "/../app",
   entry: {
     rollDice: "./roll-dice.js",
     rollCharacter: "./roll-character.js",

@@ -31,7 +31,7 @@
     "pack": "build --dir",
     "dist": "build",
     "distWin": "build --win",
-    "dev": "webpack --progress --colors --watch"
+    "dev": "webpack --config build/webpack.config.js --progress --colors --watch"
   },
   "dependencies": {
     "bootstrap": "^3.3.7",

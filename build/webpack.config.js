@@ -1,3 +1,5 @@
+const path = require('path');
+
 var debug = process.env.NODE_ENV !== "production";
 
 module.exports = {
@@ -8,18 +10,14 @@ module.exports = {
     tablesSelect: './tables-select.js'
   },
   output: {
-    path: "./app/dist",
+    path: path.resolve(__dirname, "../dist"),
 		filename: "[name].js"
   },
   target: "electron",
   devtool: debug ? "inline-sourcemap" : null,
   module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel'
-      }
+    rules: [
+      { test: /\.js$/, exclude: /node_modules/, use: "babel-loader" }
     ]
   }
 };

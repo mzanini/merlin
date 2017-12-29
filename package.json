@@ -26,7 +26,7 @@
   "scripts": {
     "postinstall": "install-app-deps",
     "test": "jest --verbose",
-    "start": "electron .",
+    "start": "electron app/",
     "build": "electron-packager . --out=dist --asar --overwrite --all",
     "pack": "build --dir",
     "dist": "build",

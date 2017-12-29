@@ -1,3 +1,3 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-require("./js/character-rolling.js");
+require("./components/character-rolling.js");

@@ -1,4 +1,4 @@
-import CharacterModel from "../app/js/character-model.js";
+import CharacterModel from "../app/components/character-model";
 
 test('pickRace picks a race randomly from given table', () => {
   var racesTable = new Array();

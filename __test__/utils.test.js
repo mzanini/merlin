@@ -1,4 +1,4 @@
-import { rollFourSixSidedDie, rollDie, rollPercentile, extractRace } from "../app/js/utils.js";
+import { rollFourSixSidedDie, rollDie, rollPercentile, extractRace } from "../app/components/utils.js";
 
 test('rollDie returns random value between 1 and argument', () => {
   var roll = rollDie(5);

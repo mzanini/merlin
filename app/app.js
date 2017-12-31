@@ -1,5 +1,20 @@
-import React from 'react'
-import {render} from 'react-dom'
-import MultiCharacterRolling from './components/multi-character-rolling'
+import React from 'react';
+import {render} from 'react-dom';
+import { MemoryRouter, Switch, Route } from 'react-router';
+import SingleCharacterRolling from './components/single-character-rolling';
+import Homepage from './components/Homepage';
 
-render(<MultiCharacterRolling/>, document.getElementById('app'))
+const Root = () => {
+return (
+    <MemoryRouter>
+        <div>
+            <Switch>
+                <Route path="/" component={Homepage} />
+            </Switch>
+        </div>
+    </MemoryRouter>
+)
+}
+
+
+render(<Root/>, document.querySelector('#app'))

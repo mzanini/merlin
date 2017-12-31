@@ -6,6 +6,7 @@ module.exports = {
   context: __dirname + "/../app",
   entry: {
     background: "./background.js",
+    app: "./app.js",
     rollDice: "./roll-dice.js",
     rollCharacter: "./roll-character.js",
     tablesSelect: './tables-select.js'

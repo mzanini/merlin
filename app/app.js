@@ -4,6 +4,7 @@ import { MemoryRouter, Switch, Route } from 'react-router';
 import { Link } from 'react-router-dom';
 import SingleCharacterRolling from './components/single-character-rolling';
 import NewGame from './components/NewGame';
+import Game from './components/Game';
 
 const Root = () => {
 return (
@@ -16,7 +17,7 @@ return (
       <Switch>
         <Route exact path="/"/>
         <Route path="/new-game" component={NewGame} />
-        <Route pattern="/game/:gameName" component={SingleCharacterRolling} />
+        <Route pattern="/game/:gameName" component={Game} />
       </Switch>
     </div>
   </MemoryRouter>

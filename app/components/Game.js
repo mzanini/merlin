@@ -14,7 +14,7 @@ export default class Game extends React.Component {
   }
 
   addCharacter(character) {
-    const characters = this.state.characters
+    const characters = {...this.state.characters}
     characters[character.name] = character
     this.setState({ characters })
   }

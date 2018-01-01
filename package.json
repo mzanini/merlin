@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "chance": "^1.0.13",
     "electron-debug": "^1.4.0",
     "electron-settings": "^3.1.4",
     "jquery": "^3.1.1",
@@ -56,6 +57,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-latest": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "chai": "^4.1.2",
     "devtron": "^1.1.0",
     "electron": "^1.7.10",

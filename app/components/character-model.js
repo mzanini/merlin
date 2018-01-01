@@ -1,7 +1,14 @@
 import { matches, extractProbability, socialClassProbability, rollPercentile, rollFourSixSidedDie } from "./utils.js"
+import Chance from 'chance'
+
+var chance = new Chance();
 
 export default class CharacterModel {
-  constructor() { this.name = ""; }
+  constructor() { this.name = "";}
+
+  randomName() {
+    this.name = chance.twitter();
+  }
 
   pickRace(racesTable) {
     var raceRoll = Math.floor(Math.random() * 1000 + 1);

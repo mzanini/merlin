@@ -8,10 +8,11 @@ export default class Character extends React.Component {
         <thead>
           <tr>
             <th>Character</th>
-            <th>{this.props.name}</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
+          <tr><td>Name</td><td>{character.name}</td></tr>
           {character.race ? ( <tr><td>Race</td><td>{character.race}</td></tr> ) : null}
           {character.socialClass ? ( <tr><td>Social Class</td><td>{character.socialClass}</td></tr> ) : null}
           {

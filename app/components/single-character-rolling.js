@@ -109,6 +109,7 @@ export default class SingleCharacterRolling extends React.Component {
         </div>
         <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6"><InfoColumn info={this.state.info}/></div>
         <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4"><Character character={this.state.character}/></div>
+        <button onClick={() => this.props.addCharacter(this.state.character) } >Add Character</button>
       </div>
     )
   }

@@ -1,4 +1,5 @@
 import React from 'react';
+import Character from './character'
 import SingleCharacterRolling from "./single-character-rolling";
 
 export default class Game extends React.Component {
@@ -24,10 +25,10 @@ export default class Game extends React.Component {
         <ul>
           {
             Object.keys(this.state.characters)
-              .map(name => <Character character={this.state.characters[name]}/>)
+              .map(name => <Character key={name} character={this.state.characters[name]}/>)
           }
         </ul>
-        <SingleCharacterRolling/>
+        <SingleCharacterRolling addCharacter={this.addCharacter}/>
       </div>
     );
   }

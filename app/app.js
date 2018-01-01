@@ -3,7 +3,7 @@ import {render} from 'react-dom';
 import { MemoryRouter, Switch, Route } from 'react-router';
 import { Link } from 'react-router-dom';
 import SingleCharacterRolling from './components/single-character-rolling';
-import Homepage from './components/Homepage';
+import NewGame from './components/NewGame';
 
 const Root = () => {
 return (
@@ -12,10 +12,11 @@ return (
     initialIndex={0}>
     <div>
     <Link to="/"> homepage </Link>
-    <Link to="/game"> game </Link>
+    <Link to="/new-game"> New game </Link>
       <Switch>
-        <Route exact path="/" component={Homepage} />
-        <Route path="/game" component={SingleCharacterRolling} />
+        <Route exact path="/"/>
+        <Route path="/new-game" component={NewGame} />
+        <Route pattern="/game/:gameName" component={SingleCharacterRolling} />
       </Switch>
     </div>
   </MemoryRouter>

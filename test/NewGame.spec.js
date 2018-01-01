@@ -5,11 +5,11 @@ import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 Enzyme.configure({ adapter: new Adapter() });
 
-import Homepage from '../app/components/Homepage';
+import NewGame from '../app/components/NewGame';
 
-describe('<Homepage/>', function () {
+describe('<NewGame/>', function () {
   it('should have a button to start a game', function () {
-    const wrapper = shallow(<Homepage/>);
+    const wrapper = shallow(<NewGame/>);
     expect(wrapper.find('button')).to.have.length(1);
   });
 });

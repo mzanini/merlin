@@ -34,6 +34,7 @@ export default class SingleCharacterRolling extends React.Component {
     this.rollStats = this.rollStats.bind(this);
     this.rollAll = this.rollAll.bind(this);
     this.exportCurrentCharacter = this.exportCurrentCharacter.bind(this)
+    this.addCharacter = this.addCharacter.bind(this)
   }
 
   rollRace() {
@@ -66,6 +67,7 @@ export default class SingleCharacterRolling extends React.Component {
     this.rollSocialClass();
     this.rollMinors();
     this.rollStats();
+    this.state.character.randomName();
   }
 
   updateRaces(response) {
@@ -91,6 +93,10 @@ export default class SingleCharacterRolling extends React.Component {
     settings.get('racesTablePath').then(value => { loadJSON(value, this.updateRaces.bind(this)) })
     settings.get('socialClassesTablePath').then(value => { loadJSON(value, this.updateSocialClasses.bind(this)) })
     settings.get('minorAbilititesTablePath').then(value => { loadJSON(value, this.updateMinorAbilities.bind(this)) })
+
+    const state = this.state
+    state.character = new CharacterModel()
+    this.setState({ state })
   }
 
   exportCurrentCharacter() {
@@ -101,15 +107,29 @@ export default class SingleCharacterRolling extends React.Component {
         })
   }
 
+  createCharacter(event) {
+    event.preventDefault()
+    const character = new CharacterModel();
+    character.randomName()
+    character.pickRace(this.races)
+    character.pickSocialClass(this.socialClasses)
+    character.pickMinors(this.minorAbilities)
+    character.pickStats()
+    this.props.addCharacter(character)
+  }
+
+  addCharacter(event) {
+    event.preventDefault()
+    this.rollAll()
+    this.props.addCharacter(this.state.character)
+    this.characterForm.reset()
+  }
+
   render() {
     return (
-      <div>
-        <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2"><RollControl buttonsState = {this.state.buttonsState} rollRace={this.rollRace} rollSocialClass={this.rollSocialClass} rollMinors={this.rollMinors} rollStats={this.rollStats} rollAll={this.rollAll}/>
-        <button type="button" className="btn btn-default btn-md" onClick={this.exportCurrentCharacter}>Export to CSV</button>
-        </div>
-        <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4"><Character character={this.state.character}/></div>
-        <button onClick={() => this.props.addCharacter(this.state.character) } >Add Character</button>
-      </div>
+      <form ref={(input) => this.characterForm = input} onSubmit={(e) => this.createCharacter(e)}>
+        <button type="submit">+ Add Character</button>
+      </form>
     )
   }
 }

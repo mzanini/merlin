@@ -1,5 +1,27 @@
-import React from 'react'
-import {render} from 'react-dom'
-import MultiCharacterRolling from './components/multi-character-rolling'
+import React from 'react';
+import {render} from 'react-dom';
+import { MemoryRouter, Switch, Route } from 'react-router';
+import { Link } from 'react-router-dom';
+import SingleCharacterRolling from './components/single-character-rolling';
+import NewGame from './components/NewGame';
 
-render(<MultiCharacterRolling/>, document.getElementById('app'))
+const Root = () => {
+return (
+  <MemoryRouter
+    initialEntries={[ '/', '/game']}
+    initialIndex={0}>
+    <div>
+    <Link to="/"> homepage </Link>
+    <Link to="/new-game"> New game </Link>
+      <Switch>
+        <Route exact path="/"/>
+        <Route path="/new-game" component={NewGame} />
+        <Route pattern="/game/:gameName" component={SingleCharacterRolling} />
+      </Switch>
+    </div>
+  </MemoryRouter>
+)
+}
+
+
+render(<Root/>, document.querySelector('#app'))

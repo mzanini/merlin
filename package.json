@@ -37,18 +37,24 @@
     "dev:hot": "webpack-dev-server --config build/webpack.test.config.js --hot --inline --progress --colors --watch --content-base ./"
   },
   "dependencies": {
+    "autoprefixer": "^7.2.3",
     "bootstrap": "^3.3.7",
     "chance": "^1.0.13",
     "electron-debug": "^1.4.0",
     "electron-settings": "^3.1.4",
-    "jquery": "^3.1.1",
+    "jquery": "^3.2.1",
     "json2csv": "^3.11.1",
+    "pev": "^1.0.0",
+    "popper.js": "^1.12.9",
+    "postcss-loader": "^2.0.9",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2"
+    "react-router-dom": "^4.2.2",
+    "url-loader": "^0.6.2"
   },
   "devDependencies": {
+    "b": "^2.0.1",
     "babel": "^6.5.2",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
@@ -59,6 +65,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "chai": "^4.1.2",
+    "css-loader": "^0.28.7",
     "devtron": "^1.1.0",
     "electron": "^1.7.10",
     "electron-builder": "^16.6.1",
@@ -72,6 +79,7 @@
     "react-addons-test-utils": "^15.6.2",
     "react-test-renderer": "^16.2.0",
     "readline": "^1.3.0",
+    "style-loader": "^0.19.1",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.7",
     "webpack-merge": "^4.1.1",

@@ -11,7 +11,7 @@ return (
   <MemoryRouter
     initialEntries={[ '/', '/game']}
     initialIndex={0}>
-    <div className="container-fluid">
+    <div>
       <Switch>
         <Route exact path="/" component={Start}/>
         <Route path="/new-game" component={NewGame} />

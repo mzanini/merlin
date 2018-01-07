@@ -11,6 +11,7 @@ class App extends React.Component {
     super()
     
     this.createNewGame = this.createNewGame.bind(this)
+    this.deleteGame = this.deleteGame.bind(this)
 
     this.state = {
       games: {}
@@ -32,6 +33,12 @@ class App extends React.Component {
     })
   }
 
+  deleteGame(gameName) {
+    const games = {...this.state.games}
+    delete games[gameName];
+    this.setState( {games} );
+  }
+
   render() {
     return (
       <MemoryRouter
@@ -39,7 +46,7 @@ class App extends React.Component {
         initialIndex={0}>
         <div>
           <Switch>
-            <Route exact path="/" component={() => <Start games={this.state.games}/>}/>
+            <Route exact path="/" component={() => <Start games={this.state.games} deleteGame={this.deleteGame}/>}/>
             <Route exact path="/new-game" component={() => <NewGame createNewGame={this.createNewGame}/>} />
             <Route exact pattern="/game/:gameName" component={Game} />
           </Switch>

@@ -16,12 +16,20 @@ class App extends React.Component {
       games: {}
     }
   }
+
+  componentWillMount() {
+    const localStorageRef = localStorage.getItem('deememory-games')
+    if(localStorageRef)
+      this.setState({ games: JSON.parse(localStorageRef) })
+  }
   
   createNewGame(gameName) {
     var game = {name: gameName}
     const games = {...this.state.games}
     games[game.name] = game
-    this.setState({ games })
+    this.setState({ games }, () => {
+      localStorage.setItem('deememory-games', JSON.stringify(this.state.games))
+    })
   }
 
   render() {

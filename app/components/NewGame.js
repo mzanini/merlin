@@ -5,6 +5,7 @@ class NewGame extends React.Component {
   startNewGame(event) {
     event.preventDefault()
     const gameName = this.gameName.value
+    this.props.createNewGame(gameName)
     this.props.history.push(`/game/${gameName}`)
   }
 

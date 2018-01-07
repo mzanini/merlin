@@ -6,20 +6,22 @@ import Game from './components/Game';
 import Start from './components/Start';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Root = () => {
-return (
-  <MemoryRouter
-    initialEntries={[ '/', '/game']}
-    initialIndex={0}>
-    <div>
-      <Switch>
-        <Route exact path="/" component={Start}/>
-        <Route exact path="/new-game" component={NewGame} />
-        <Route exact pattern="/game/:gameName" component={Game} />
-      </Switch>
-    </div>
-  </MemoryRouter>
-)
+class App extends React.Component {
+  render() {
+    return (
+      <MemoryRouter
+        initialEntries={[ '/', '/game']}
+        initialIndex={0}>
+        <div>
+          <Switch>
+            <Route exact path="/" component={Start}/>
+            <Route exact path="/new-game" component={NewGame} />
+            <Route exact pattern="/game/:gameName" component={Game} />
+          </Switch>
+        </div>
+      </MemoryRouter>
+    );
+  }
 }
 
-render(<Root/>, document.querySelector('#app'))
+render(<App/>, document.querySelector('#app'))

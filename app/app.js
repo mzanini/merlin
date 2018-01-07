@@ -14,8 +14,8 @@ return (
     <div>
       <Switch>
         <Route exact path="/" component={Start}/>
-        <Route path="/new-game" component={NewGame} />
-        <Route pattern="/game/:gameName" component={Game} />
+        <Route exact path="/new-game" component={NewGame} />
+        <Route exact pattern="/game/:gameName" component={Game} />
       </Switch>
     </div>
   </MemoryRouter>

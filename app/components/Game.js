@@ -8,9 +8,11 @@ class Game extends React.Component {
     super()
     
     this.addCharacter = this.addCharacter.bind(this)
+    this.showCharacter = this.showCharacter.bind(this)
 
     this.state = {
-      gameName: ''
+      gameName: '',
+      info: null
     }
   }
 
@@ -25,16 +27,32 @@ class Game extends React.Component {
     this.props.addNewCharacter(this.state.gameName, character)
   }
 
+  showCharacter(name) {
+    const character = <Character character={this.props.games[this.state.gameName].characters[name]}/>
+    this.setState({ info: character })
+  }
+
   render() {
     return (
-      <div>
-        <ul>
-          {
-            Object.keys(this.props.games[this.state.gameName].characters)
-              .map(name => <Character key={name} character={this.props.games[this.state.gameName].characters[name]}/>)
-          }
-        </ul>
-        <SingleCharacterRolling addCharacter={this.addCharacter}/>
+      <div  className="container-fluid">
+        <div className="row text-center">
+          <span className="badge badge-info">{this.state.gameName}</span>
+        </div>
+        <div className="row">
+          <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+            <button type="button" className="btn btn-primary" onClick={() => {this.props.history.push('/')} }>Game List -></button>
+            <ul className="list-group">
+              {
+                Object.keys(this.props.games[this.state.gameName].characters)
+                  .map(name => <button key={name} name={name} onClick={() => {this.showCharacter(name)} } className="list-group-item list-group-item-action">{name}</button>)
+              }
+            </ul>
+            <SingleCharacterRolling addCharacter={this.addCharacter}/>
+          </div>
+          <div className="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+            {this.state.info}
+          </div>   
+        </div>
       </div>
     );
   }

@@ -29,11 +29,16 @@ class Start extends React.Component {
   }
 
   loadGame(gameName) {
-    this.props.history.push(`/game/${name}`)
+    this.props.history.push(`/game/${gameName}`)
   }
 
   deleteGame(gameName) {
     this.props.deleteGame(gameName)
+  }
+
+  startNewGame() {
+    this.props.createNewGame(this.gameName.value);
+    this.props.history.push(`/game/${this.gameName.value}`)
   }
 
   render() {
@@ -50,7 +55,10 @@ class Start extends React.Component {
             </ul>
           </div>
           <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-            <button className="btn btn-success" onClick={(event) => {event.preventDefault(); this.props.history.push('/new-game')}}>Start a New Game!</button>
+            <form onSubmit={() => {this.startNewGame()}}>
+              <button className="btn btn-success" type="submit">Start New Game -></button>
+              <input type="text" required placeholder="Game Name" ref={(input) => {this.gameName = input}}/>
+            </form>
           </div>
         </div>
       </div>

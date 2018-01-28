@@ -27,14 +27,21 @@ class Game extends React.Component {
 
   render() {
     return (
-      <div>
-        <ul>
-          {
-            Object.keys(this.props.games[this.state.gameName].characters)
-              .map(name => <Character key={name} character={this.props.games[this.state.gameName].characters[name]}/>)
-          }
-        </ul>
-        <SingleCharacterRolling addCharacter={this.addCharacter}/>
+      <div  className="container-fluid">
+        <div className="row">
+          <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+            <button type="button" className="btn btn-primary" onClick={() => {this.props.history.push('/')} }>Game List -></button>
+            <SingleCharacterRolling addCharacter={this.addCharacter}/>
+          </div>
+          <div className="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+            <ul>
+              {
+                Object.keys(this.props.games[this.state.gameName].characters)
+                  .map(name => <Character key={name} character={this.props.games[this.state.gameName].characters[name]}/>)
+              }
+            </ul>
+          </div>   
+        </div>
       </div>
     );
   }

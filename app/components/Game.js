@@ -28,6 +28,9 @@ class Game extends React.Component {
   render() {
     return (
       <div  className="container-fluid">
+        <div className="row text-center">
+          <span className="badge badge-info">{this.state.gameName}</span>
+        </div>
         <div className="row">
           <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
             <button type="button" className="btn btn-primary" onClick={() => {this.props.history.push('/')} }>Game List -></button>

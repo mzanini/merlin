@@ -1,22 +1,28 @@
-import React from 'react';
+import React from 'react'
+import { withRouter } from 'react-router-dom'
 import Character from './character'
 import SingleCharacterRolling from "./single-character-rolling";
 
-export default class Game extends React.Component {
+class Game extends React.Component {
   constructor() {
     super()
     
     this.addCharacter = this.addCharacter.bind(this)
 
     this.state = {
-      characters: {}
+      gameName: ''
     }
   }
 
+  componentWillMount() {
+    var path = this.props.history.location.pathname.split('/')
+    this.setState({ gameName: path[path.length - 1]})
+  }
+
   addCharacter(character) {
-    const characters = {...this.state.characters}
+    const characters = {...this.props.games[this.state.gameName].characters}
     characters[character.name] = character
-    this.setState({ characters })
+    this.props.addNewCharacter(this.state.gameName, character)
   }
 
   render() {
@@ -24,8 +30,8 @@ export default class Game extends React.Component {
       <div>
         <ul>
           {
-            Object.keys(this.state.characters)
-              .map(name => <Character key={name} character={this.state.characters[name]}/>)
+            Object.keys(this.props.games[this.state.gameName].characters)
+              .map(name => <Character key={name} character={this.props.games[this.state.gameName].characters[name]}/>)
           }
         </ul>
         <SingleCharacterRolling addCharacter={this.addCharacter}/>
@@ -33,3 +39,5 @@ export default class Game extends React.Component {
     );
   }
 }
+
+export default withRouter(Game)

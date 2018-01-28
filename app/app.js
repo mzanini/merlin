@@ -40,6 +40,7 @@ class App extends React.Component {
     const games = {...this.state.games}
     const characters = {...games[gameName].characters}
     characters[character.name] = character
+    games[gameName].characters = characters
     this.setState({ games }) 
   }
 
@@ -58,7 +59,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={() => <Start games={this.state.games} deleteGame={this.deleteGame} 
               setCurrentGame={this.setCurrentGame} createNewGame={this.createNewGame}/>} />
-            <Route exact pattern="/game/:gameName" component={() => <Game games={this.state.games}/>} />
+            <Route exact pattern="/game/:gameName" component={() => <Game games={this.state.games} addNewCharacter={this.addNewCharacter}/>} />
           </Switch>
         </div>
       </MemoryRouter>

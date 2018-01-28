@@ -20,9 +20,9 @@ class Game extends React.Component {
   }
 
   addCharacter(character) {
-    const characters = {...this.props.games[gameName].characters}
+    const characters = {...this.props.games[this.state.gameName].characters}
     characters[character.name] = character
-    //this.props.addNewCharacter(gameName, character)
+    this.props.addNewCharacter(this.state.gameName, character)
   }
 
   render() {
@@ -31,7 +31,7 @@ class Game extends React.Component {
         <ul>
           {
             Object.keys(this.props.games[this.state.gameName].characters)
-              .map(name => <Character key={name} character={this.state.characters[name]}/>)
+              .map(name => <Character key={name} character={this.props.games[this.state.gameName].characters[name]}/>)
           }
         </ul>
         <SingleCharacterRolling addCharacter={this.addCharacter}/>

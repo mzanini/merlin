@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 const GameItem = (props) => {
   return (
     <li  className="list-group-item list-group-item-action">
-      <div className="container">
+      <div className="container-fluid">
         <div className="row">
           <div className="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
             <a onClick={() => props.loadGame(props.name)}>{props.name}</a>
@@ -21,11 +21,52 @@ const GameItem = (props) => {
   )
 }
 
+class NewGameItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+  
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+  
+  handleSubmit(event) {
+    event.preventDefault();
+    this.props.startNewGame(this.state.value);
+  }
+  
+  render() {
+    return (
+      <li  className="list-group-item list-group-item-action">
+        <div className="container-fluid">
+          <div className="row">
+            <form onSubmit={this.handleSubmit}>
+            <div className="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+              <input type="text" required placeholder="New Game" value={this.state.value} onChange={this.handleChange} /> 
+            </div>
+            <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+              <button className="btn btn-link" type="submit">
+                <span className="glyphicon glyphicon-chevron-right"/>
+              </button>
+            </div>
+            </form>
+          </div>
+        </div>
+      </li>
+    )
+  }
+}
+
 class Start extends React.Component {
   constructor() {
     super()
     this.loadGame = this.loadGame.bind(this)
     this.deleteGame = this.deleteGame.bind(this)
+    this.startNewGame = this.startNewGame.bind(this)
   }
 
   loadGame(gameName) {
@@ -36,9 +77,9 @@ class Start extends React.Component {
     this.props.deleteGame(gameName)
   }
 
-  startNewGame() {
-    this.props.createNewGame(this.gameName.value);
-    this.props.history.push(`/game/${this.gameName.value}`)
+  startNewGame(name) {
+    this.props.createNewGame(name);
+    this.props.history.push(`/game/${name}`)
   }
 
   render() {
@@ -46,19 +87,14 @@ class Start extends React.Component {
       <div className="container-fluid">
         <div className="row">
           <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-            <button className="btn btn-success">Load previous Game</button>
+            <h1> <span className="badge badge-secondary">Load previous Game</span> </h1>
             <ul className="list-group">
               {
                 Object.keys(this.props.games)
                   .map(name => <GameItem key={name} name={name} loadGame={this.loadGame} deleteGame={this.deleteGame}/>)
               }
+              <NewGameItem startNewGame={this.startNewGame}/>      
             </ul>
-          </div>
-          <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-            <form onSubmit={() => {this.startNewGame()}}>
-              <button className="btn btn-success" type="submit">Start New Game -></button>
-              <input type="text" required placeholder="Game Name" ref={(input) => {this.gameName = input}}/>
-            </form>
           </div>
         </div>
       </div>

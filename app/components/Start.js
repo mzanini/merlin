@@ -87,7 +87,7 @@ class Start extends React.Component {
       <div className="container-fluid">
         <div className="row">
           <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-            <h1> <span className="badge badge-secondary">Load previous Game</span> </h1>
+            <h1>Game List</h1>
             <ul className="list-group">
               {
                 Object.keys(this.props.games)

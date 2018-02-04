@@ -44,7 +44,7 @@ export default class Roll extends React.Component {
           <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4">
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
-                Faces:
+                <label>Faces</label>
                 <select className="form-control" value={this.state.faces} onChange={this.handleChangeFaces}>
                   <option value="4" defaultValue>4</option>
                   <option value="6">6</option>
@@ -52,21 +52,22 @@ export default class Roll extends React.Component {
                   <option value="10">10</option>
                   <option value="12">12</option>
                 </select>
-                Adjust:<input type="number" className="form-control" value={this.state.adjust} onChange={this.handleChangeDieAdjust}/>
-                Number of:<input type="number" className="form-control" name="number_of" value={this.state.count} onChange={this.handleChangeDieCount}/>
-                <input type="submit" className="btn btn-large" onClick={this.rollDie} value="Roll"/>
+                <label>Adjust</label>
+                <input type="number" className="form-control" value={this.state.adjust} onChange={this.handleChangeDieAdjust}/>
+                <label>Number of</label>
+                <input type="number" className="form-control" name="number_of" value={this.state.count} onChange={this.handleChangeDieCount}/>
               </div>
+              <input type="submit" className="btn btn-primary" onClick={this.rollDie} value="Roll"/>
             </form>
           </div>
-        </div>
-        <div className="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-          Results:
-          <ul className="list-group">
-            { 
-              this.state.rolls.map((number) => { return <li>{number}</li>} )
-            }
-          </ul>
-        </div>
+          <div className="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+            <ul className="list-group list-group-flush">
+              { 
+                this.state.rolls.map((number, index) => { return <li className="list-group-item" key={index}>{number}</li>} )
+              }
+            </ul>
+          </div>
+        </div>       
       </div>
     )
   }

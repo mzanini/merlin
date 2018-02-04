@@ -1,19 +1,24 @@
 'use strict'
 const electron = require('electron')
+const {ipcMain} = require('electron')
+// adds debug features like hotkeys for triggering dev tools and reload
+require('electron-debug')({showDevTools: true});
 
 const app = electron.app;
 const Menu = electron.Menu;
-// adds debug features like hotkeys for triggering dev tools and reload
-require('electron-debug')();
 
 // prevent window being garbage collected
 let mainWindow;
+let rollWindow;
 let selectTablesWindow;
 
 function onClosed() {
 	// dereference the window
 	// for multiple windows store them in an array
-	mainWindow = null;
+  mainWindow = null;
+  rollWindow.removeAllListeners()
+  rollWindow.close();
+  rollWindow = null;
 }
 
 function createMainWindow() {
@@ -24,6 +29,24 @@ function createMainWindow() {
 
 	win.loadURL(`file://${__dirname}/app.html`);
 	win.on('closed', onClosed);
+
+	return win;
+}
+
+function createRollWindow() {
+	const win = new electron.BrowserWindow({
+		width: 800,
+		height: 600,
+		show: false
+	});
+
+	win.loadURL(`file://${__dirname}/roll.html`);
+	win.on('close', function(event) {
+		if(rollWindow) {
+			event.preventDefault()
+			rollWindow.hide()
+		}	
+  });
 
 	return win;
 }
@@ -56,6 +79,10 @@ function createMenu(win) {
   win.setMenu(menu)
 }
 
+ipcMain.on('open-roll', function(){
+	rollWindow.show()
+})
+
 app.on('window-all-closed', () => {
 	if (process.platform !== 'darwin') {
 		app.quit();
@@ -70,5 +97,6 @@ app.on('activate', () => {
 
 app.on('ready', () => {
 	mainWindow = createMainWindow();
-  createMenu(mainWindow)
+	createMenu(mainWindow)
+	rollWindow = createRollWindow();
 });

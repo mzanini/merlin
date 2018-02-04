@@ -7,7 +7,7 @@ module.exports = {
   entry: {
     background: "./background.js",
     app: "./app.js",
-    rollDice: "./roll-dice.js",
+    roll: "./roll.js",
     rollCharacter: "./roll-character.js",
     tablesSelect: './tables-select.js'
   },

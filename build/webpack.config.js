@@ -8,7 +8,6 @@ module.exports = {
     background: "./background.js",
     app: "./app.js",
     roll: "./roll.js",
-    rollCharacter: "./roll-character.js",
     tablesSelect: './tables-select.js'
   },
   output: {

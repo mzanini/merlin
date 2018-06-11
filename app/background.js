@@ -73,10 +73,14 @@ function createMenu(win) {
         click: () => {selectTablesWindow = createSelectTablesWindow()}
       }
     ]
-  }];
+	}];
+	
+	const menu = Menu.buildFromTemplate(template)
 
-  const menu = Menu.buildFromTemplate(template)
-  win.setMenu(menu)
+	if (process.platform === 'darwin') 
+		Menu.setApplicationMenu(menu)
+	else
+		win.setMenu(menu)
 }
 
 ipcMain.on('open-roll', function(){

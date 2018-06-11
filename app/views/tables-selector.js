@@ -54,9 +54,9 @@ export default class TablesSelector extends React.Component {
   }
 
   componentWillMount() {
-    this.setState( {racesTablePath: settings.getSync('racesTablePath')} )
-    this.setState( {socialClassesTablePath: settings.getSync('socialClassesTablePath')} )
-    this.setState( {minorAbilititesTablePath: settings.getSync('minorAbilititesTablePath')} )
+    this.setState( {racesTablePath: settings.get('racesTablePath')} )
+    this.setState( {socialClassesTablePath: settings.get('socialClassesTablePath')} )
+    this.setState( {minorAbilititesTablePath: settings.get('minorAbilititesTablePath')} )
   }
 
   render() {

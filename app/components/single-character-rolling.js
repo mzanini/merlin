@@ -90,9 +90,9 @@ export default class SingleCharacterRolling extends React.Component {
   }
 
   componentWillMount() {
-    settings.get('racesTablePath').then(value => { loadJSON(value, this.updateRaces.bind(this)) })
-    settings.get('socialClassesTablePath').then(value => { loadJSON(value, this.updateSocialClasses.bind(this)) })
-    settings.get('minorAbilititesTablePath').then(value => { loadJSON(value, this.updateMinorAbilities.bind(this)) })
+    loadJSON(settings.get('racesTablePath'), this.updateRaces.bind(this))
+    loadJSON(settings.get('socialClassesTablePath'), this.updateRaces.bind(this))
+    loadJSON(settings.get('minorAbilititesTablePath'), this.updateRaces.bind(this))
 
     const state = this.state
     state.character = new CharacterModel()

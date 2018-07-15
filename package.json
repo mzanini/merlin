@@ -33,8 +33,16 @@
     "dist": "build",
     "distWin": "build --win",
     "dev": "webpack --config build/webpack.config.js --progress --colors --watch",
-    "test": "mocha -w test/helpers/browser.js test/*.spec.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
     "dev:hot": "webpack-dev-server --config build/webpack.test.config.js --hot --inline --progress --colors --watch --content-base ./"
+  },
+  "jest": {
+    "setupFiles": [
+      "./test/testsetup.js"
+    ],
+    "automock": false
   },
   "dependencies": {
     "autoprefixer": "^7.2.3",
@@ -73,7 +81,7 @@
     "electron-react-devtools": "^0.5.2",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "jest": "^22.0.4",
+    "jest": "^22.4.4",
     "jsdom": "^11.5.1",
     "mocha": "^4.1.0",
     "react-addons-test-utils": "^15.6.2",

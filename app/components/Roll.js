@@ -4,12 +4,13 @@ export default class Roll extends React.Component {
   constructor() {
     super()
     this.state = {
-      faces: '4', 
-      adjust: 0, 
-      count: 1, 
+      faces: '4',
+      adjust: 0,
+      count: 1,
       rolls: []
     };
 
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeFaces = this.handleChangeFaces.bind(this);
     this.handleChangeDieAdjust = this.handleChangeDieAdjust.bind(this);
     this.handleChangeDieCount = this.handleChangeDieCount.bind(this);
@@ -28,12 +29,17 @@ export default class Roll extends React.Component {
     this.setState({count: event.target.value});
   }
 
-  rollDie(event) {
+  handleSubmit(event) {
+    // Prevent default form behavior that posts to the server
     event.preventDefault();
+    this.rollDie();
+  }
+
+  rollDie() {
     var newRolls = []
     for(var i=0; i < this.state.count; i++)
       newRolls.push(Math.floor( (Math.random() * this.state.faces) + 1) + this.state.adjust);
-    
+
     this.setState({rolls: newRolls})
   }
 
@@ -57,17 +63,17 @@ export default class Roll extends React.Component {
                 <label>Number of</label>
                 <input type="number" className="form-control" name="number_of" value={this.state.count} onChange={this.handleChangeDieCount}/>
               </div>
-              <input type="submit" className="btn btn-primary" onClick={this.rollDie} value="Roll"/>
+              <input type="submit" className="btn btn-primary" value="Roll"/>
             </form>
           </div>
           <div className="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-            <ul className="list-group list-group-flush">
-              { 
+            <ul className="list-group list-group-flush result">
+              {
                 this.state.rolls.map((number, index) => { return <li className="list-group-item" key={index}>{number}</li>} )
               }
             </ul>
           </div>
-        </div>       
+        </div>
       </div>
     )
   }

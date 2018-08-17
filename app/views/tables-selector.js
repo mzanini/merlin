@@ -2,6 +2,7 @@ import React from "react"
 import fs from 'fs'
 const {dialog} = require('electron').remote
 import settings from 'electron-settings'
+import constants from '../constants'
 
 export default class TablesSelector extends React.Component {
   constructor(props) {
@@ -24,7 +25,7 @@ export default class TablesSelector extends React.Component {
         if (fileNames === undefined)
           return;
 
-        settings.set('racesTablePath', fileNames[0])
+        settings.set(constants.RACES_TABLE_PATH, fileNames[0])
         this.setState({racesTablePath: fileNames[0]})
       })
   }
@@ -36,7 +37,7 @@ export default class TablesSelector extends React.Component {
         if (fileNames === undefined)
           return;
 
-        settings.set('socialClassesTablePath', fileNames[0])
+        settings.set(constants.SOCIAL_CLASSES_TABLE_PATH, fileNames[0])
         this.setState({socialClassesTablePath: fileNames[0]});
       })
   }
@@ -48,15 +49,15 @@ export default class TablesSelector extends React.Component {
         if (fileNames === undefined)
           return;
 
-        settings.set('minorAbilititesTablePath', fileNames[0])
+        settings.set(constants.MINOR_ABILITIES_TABLE_PATH, fileNames[0])
         this.setState({minorAbilititesTablePath: fileNames[0]});
       })
   }
 
   componentWillMount() {
-    this.setState( {racesTablePath: settings.get('racesTablePath')} )
-    this.setState( {socialClassesTablePath: settings.get('socialClassesTablePath')} )
-    this.setState( {minorAbilititesTablePath: settings.get('minorAbilititesTablePath')} )
+    this.setState( {racesTablePath: settings.get(constants.RACES_TABLE_PATH)} )
+    this.setState( {socialClassesTablePath: settings.get(constants.SOCIAL_CLASSES_TABLE_PATH)} )
+    this.setState( {minorAbilititesTablePath: settings.get(constants.MINOR_ABILITIES_TABLE_PATH)} )
   }
 
   render() {

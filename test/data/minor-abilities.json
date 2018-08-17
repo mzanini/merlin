@@ -1,0 +1,16 @@
+[
+  {
+    "chart" : "1",
+    "probability": "1-45",
+    "abilities" : [
+      {
+        "name": "Artist",
+        "number": "1"
+      },
+      {
+        "name": "Smith",
+        "number": "2"
+      }
+    ]
+  }
+]

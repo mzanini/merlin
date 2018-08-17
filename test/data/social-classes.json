@@ -1,0 +1,13 @@
+{
+  "race": "Human",
+  "probabilities": [
+    {
+      "name": "Peasant",
+      "probability": "1-90"
+    },
+    {
+      "name": "Nobility",
+      "probability": "90-100"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+[
+  {
+    "name": "Human",
+    "probability": "1-500"
+  },
+  {
+    "name": "Troll",
+    "probability": "501-1000"
+  }
+]

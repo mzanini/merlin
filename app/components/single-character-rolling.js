@@ -6,10 +6,11 @@ import RacesProbabilities from "./races-probabilities"
 import MinorAbilitiesProbabilities from "./minor-abilities-probabilities"
 import RollControl from "./roll-control"
 import InfoColumn from "./info-column"
-import { loadJSON, socialClassProbability } from "./utils.js"
+import socialClassProbability from "./utils.js"
 import settings from 'electron-settings'
 import fs from 'fs'
 import json2csv from 'json2csv'
+import constants from '../constants'
 const {dialog} = require('electron').remote
 
 export default class SingleCharacterRolling extends React.Component {
@@ -90,9 +91,9 @@ export default class SingleCharacterRolling extends React.Component {
   }
 
   componentWillMount() {
-    loadJSON(settings.get('racesTablePath'), this.updateRaces.bind(this))
-    loadJSON(settings.get('socialClassesTablePath'), this.updateRaces.bind(this))
-    loadJSON(settings.get('minorAbilititesTablePath'), this.updateRaces.bind(this))
+    this.races = JSON.parse(fs.readFileSync(settings.get(constants.RACES_TABLE_PATH)))
+    this.socialClasses = JSON.parse(fs.readFileSync(settings.get(constants.SOCIAL_CLASSES_TABLE_PATH)))
+    this.minorAbilities = JSON.parse(fs.readFileSync(settings.get(constants.MINOR_ABILITIES_TABLE_PATH)))
 
     const state = this.state
     state.character = new CharacterModel()

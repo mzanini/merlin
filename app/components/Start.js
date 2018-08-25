@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
-import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.css'
+import AppBar from '@material-ui/core/AppBar'
 
 const GameItem = (props) => {
   return (
@@ -25,20 +26,20 @@ class NewGameItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {value: ''};
-  
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  
+
   handleChange(event) {
     this.setState({value: event.target.value});
   }
-  
+
   handleSubmit(event) {
     event.preventDefault();
     this.props.startNewGame(this.state.value);
   }
-  
+
   render() {
     return (
       <li  className="list-group-item list-group-item-action">
@@ -46,7 +47,7 @@ class NewGameItem extends React.Component {
           <div className="row">
             <form onSubmit={this.handleSubmit}>
             <div className="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-              <input type="text" required placeholder="New Game" value={this.state.value} onChange={this.handleChange} /> 
+              <input type="text" required placeholder="New Game" value={this.state.value} onChange={this.handleChange} />
             </div>
             <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
               <button className="btn btn-link" type="submit">
@@ -85,15 +86,18 @@ class Start extends React.Component {
   render() {
     return (
       <div className="container-fluid">
+        <AppBar position="static" color=" default">
+          Game List
+        </AppBar>
         <div className="row">
           <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-            <h1>Game List</h1>
+            <h1></h1>
             <ul className="list-group">
               {
                 Object.keys(this.props.games)
                   .map(name => <GameItem key={name} name={name} loadGame={this.loadGame} deleteGame={this.deleteGame}/>)
               }
-              <NewGameItem startNewGame={this.startNewGame}/>      
+              <NewGameItem startNewGame={this.startNewGame}/>
             </ul>
           </div>
         </div>

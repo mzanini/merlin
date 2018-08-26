@@ -2,13 +2,14 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import BrowserWindow from 'electron'
 import Character from './character'
-import SingleCharacterRolling from "./single-character-rolling";
+import SingleCharacterRolling from "./single-character-rolling"
 import { ipcRenderer } from 'electron'
+import Button from '@material-ui/core/Button'
 
 class Game extends React.Component {
   constructor() {
     super()
-    
+
     this.addCharacter = this.addCharacter.bind(this)
     this.showCharacter = this.showCharacter.bind(this)
 
@@ -50,11 +51,11 @@ class Game extends React.Component {
               }
             </ul>
             <SingleCharacterRolling addCharacter={this.addCharacter}/>
-            <button className="btn" onClick={() => {event.preventDefault(); ipcRenderer.send('open-roll')} }>Roll</button>
+            <Button variant="contained" color="primary" onClick={() => {event.preventDefault(); ipcRenderer.send('open-roll')} }>Roll</Button>
           </div>
           <div className="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
             {this.state.info}
-          </div>   
+          </div>
         </div>
       </div>
     );

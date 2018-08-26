@@ -14,7 +14,7 @@ module.exports = {
     path: path.resolve(__dirname, "../dist"),
 		filename: "[name].js"
   },
-  target: "electron",
+  target: "electron-main",
   devtool: debug ? "inline-sourcemap" : null,
   module: {
     rules: [

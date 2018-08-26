@@ -1,82 +1,76 @@
-import React from 'react';
+import React from 'react'
+import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
 
 export default class Character extends React.Component {
   render() {
     var character = this.props.character;
     return (
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Character</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Name</td><td>{character.name}</td></tr>
-          {character.race ? ( <tr><td>Race</td><td>{character.race}</td></tr> ) : null}
-          {character.socialClass ? ( <tr><td>Social Class</td><td>{character.socialClass}</td></tr> ) : null}
-          {
-            character.minors ?
-              character.minors.map(function(ability, index) {
-                return (
-                  <tr key={index}>
-                    <td>Minor ability</td>
-                    <td>{ability}</td>
-                  </tr>
-                );
-              })
+      <Card>
+      <CardContent>
+        <Typography color="textSecondary">
+          {character.name}
+        </Typography>
+        <Typography variant="headline" component="h2">
+          {character.race ? character.race : null}
+        </Typography>
+        <Table>
+        <TableBody>
+          <TableRow>
+            <TableCell>Social Class</TableCell>
+            <TableCell>{character.socialClass ? character.socialClass : null}</TableCell>
+          </TableRow>
+          {character.minors ?
+            character.minors.map(function(ability, index) {
+              return (
+                <TableRow key={index}>
+                  <TableCell component="th" scope="row">
+                    Minor ability
+                  </TableCell>
+                  <TableCell numeric>{ability}</TableCell>
+                </TableRow>
+              );
+            })
             : null
           }
-          {
-            character.stats ?
-                  <tr>
-                    <td>Strength</td>
-                    <td>{character.stats.strength}</td>
-                  </tr>
-            : null
-          }
-          {
-            character.stats ?
-                  <tr>
-                    <td>Intelligence</td>
-                    <td>{character.stats.intelligence}</td>
-                  </tr>
-            : null
-          }
-          {
-            character.stats ?
-                  <tr>
-                    <td>Wisdom</td>
-                    <td>{character.stats.wisdom}</td>
-                  </tr>
-            : null
-          }
-          {
-            character.stats ?
-                  <tr>
-                    <td>Constitution</td>
-                    <td>{character.stats.constitution}</td>
-                  </tr>
-            : null
-          }
-          {
-            character.stats ?
-                  <tr>
-                    <td>Dexterity</td>
-                    <td>{character.stats.dexterity}</td>
-                  </tr>
-            : null
-          }
-          {
-            character.stats ?
-                  <tr>
-                    <td>Charisma</td>
-                    <td>{character.stats.charisma}</td>
-                  </tr>
-            : null
-          }
-        </tbody>
-      </table>
+          <TableRow>
+            <TableCell>Strength</TableCell>
+            <TableCell>{character.stats.strength}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Intelligence</TableCell>
+            <TableCell>{character.stats.intelligence}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Wisdom</TableCell>
+            <TableCell>{character.stats.wisdom}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Constitution</TableCell>
+            <TableCell>{character.stats.constitution}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Dexterity</TableCell>
+            <TableCell>{character.stats.dexterity}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Charisma</TableCell>
+            <TableCell>{character.stats.charisma}</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+      </CardContent>
+      <CardActions>
+        <Button size="small">Learn More</Button>
+      </CardActions>
+    </Card>
     );
   }
 }

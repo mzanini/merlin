@@ -1,3 +1,3 @@
 module.exports = {
-  get: jest.genMockFunction()
+  get: jest.fn()
 }

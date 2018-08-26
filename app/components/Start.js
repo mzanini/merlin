@@ -86,7 +86,7 @@ class Start extends React.Component {
   render() {
     return (
       <div className="container-fluid">
-        <AppBar position="static" color=" default">
+        <AppBar position="static" color="default">
           Game List
         </AppBar>
         <div className="row">

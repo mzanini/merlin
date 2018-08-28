@@ -12,24 +12,23 @@ import EditIcon from '@material-ui/icons/Edit'
 
 export default class Character extends React.Component {
   render() {
-    var character = this.props.character;
     return (
       <Card>
       <CardContent>
         <Typography color="textSecondary">
-          {character.name}
+          {this.props.name}
         </Typography>
         <Typography variant="headline" component="h2">
-          {character.race ? character.race : null}
+          {this.props.race}
         </Typography>
         <Table>
         <TableBody>
           <TableRow>
             <TableCell>Social Class</TableCell>
-            <TableCell>{character.socialClass ? character.socialClass : null}</TableCell>
+            <TableCell>{this.props.socialClass}</TableCell>
           </TableRow>
-          {character.minors ?
-            character.minors.map(function(ability, index) {
+          {this.props.minors ?
+            this.props.minors.map(function(ability, index) {
               return (
                 <TableRow key={index}>
                   <TableCell component="th" scope="row">
@@ -43,27 +42,27 @@ export default class Character extends React.Component {
           }
           <TableRow>
             <TableCell>Strength</TableCell>
-            <TableCell>{character.stats.strength}</TableCell>
+            <TableCell>{this.props.stats.strength}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Intelligence</TableCell>
-            <TableCell>{character.stats.intelligence}</TableCell>
+            <TableCell>{this.props.stats.intelligence}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Wisdom</TableCell>
-            <TableCell>{character.stats.wisdom}</TableCell>
+            <TableCell>{this.props.stats.wisdom}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Constitution</TableCell>
-            <TableCell>{character.stats.constitution}</TableCell>
+            <TableCell>{this.props.stats.constitution}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Dexterity</TableCell>
-            <TableCell>{character.stats.dexterity}</TableCell>
+            <TableCell>{this.props.stats.dexterity}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Charisma</TableCell>
-            <TableCell>{character.stats.charisma}</TableCell>
+            <TableCell>{this.props.stats.charisma}</TableCell>
           </TableRow>
         </TableBody>
       </Table>

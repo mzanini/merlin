@@ -31,7 +31,9 @@ class Game extends React.Component {
   }
 
   showCharacter(name) {
-    const character = <Character character={this.props.games[this.state.gameName].characters[name]}/>
+    const characterData = this.props.games[this.state.gameName].characters[name]
+    const character = <Character name={characterData.name} race={characterData.race}
+      socialClass={characterData.socialClass} stats={characterData.stats} minors={characterData.minors}/>
     this.setState({ info: character })
   }
 

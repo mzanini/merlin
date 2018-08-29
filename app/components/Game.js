@@ -2,6 +2,7 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import BrowserWindow from 'electron'
 import Character from './character'
+import CharacterEdit from './CharacterEdit'
 import SingleCharacterRolling from "./single-character-rolling"
 import { ipcRenderer } from 'electron'
 import Button from '@material-ui/core/Button'
@@ -12,10 +13,13 @@ class Game extends React.Component {
 
     this.addCharacter = this.addCharacter.bind(this)
     this.showCharacter = this.showCharacter.bind(this)
+    this.editCharacter = this.editCharacter.bind(this)
+    this.editSingleCharacter = this.editSingleCharacter.bind(this)
 
     this.state = {
       gameName: '',
-      info: null
+      info: null,
+      currentCharacterName: null
     }
   }
 
@@ -33,8 +37,20 @@ class Game extends React.Component {
   showCharacter(name) {
     const characterData = this.props.games[this.state.gameName].characters[name]
     const character = <Character name={characterData.name} race={characterData.race}
-      socialClass={characterData.socialClass} stats={characterData.stats} minors={characterData.minors}/>
-    this.setState({ info: character })
+      socialClass={characterData.socialClass} stats={characterData.stats} minors={characterData.minors} editCharacter={this.editCharacter}/>
+    this.setState({ info: character, currentCharacterName: characterData.name })
+  }
+
+  editCharacter() {
+    const characterData = this.props.games[this.state.gameName].characters[this.state.currentCharacterName]
+    const characterEdit = <CharacterEdit name={characterData.name} editCharacter={this.editSingleCharacter}/>
+    this.setState({ info: characterEdit })
+  }
+
+  editSingleCharacter(prop) {
+    const characters = {...this.props.games[this.state.gameName].characters}
+    characters[this.state.currentCharacterName][prop] = event.target.value
+    this.props.games[this.state.gameName].characters = characters
   }
 
   render() {

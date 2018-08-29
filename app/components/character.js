@@ -69,7 +69,7 @@ export default class Character extends React.Component {
       </CardContent>
       <CardActions>
         <Button size="small">
-          <EditIcon/>
+          <EditIcon onClick={this.props.editCharacter}/>
         </Button>
       </CardActions>
     </Card>

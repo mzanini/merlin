@@ -6,7 +6,7 @@ module.exports = {
   context: __dirname + "/../app",
   entry: {
     background: "./background.js",
-    app: "./app.js",
+    app: "./Application.js",
     roll: "./roll.js",
     tablesSelect: './tables-select.js'
   },
@@ -18,7 +18,16 @@ module.exports = {
   devtool: debug ? "inline-sourcemap" : null,
   module: {
     rules: [
-      { test: /\.js$/, exclude: /node_modules/, use: "babel-loader" },
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react']
+          }
+        }
+      },
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },
       { test: /\.(png|woff|woff2|eot|ttf|svg)$/, use: ['url-loader'] }
     ]

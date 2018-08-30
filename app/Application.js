@@ -5,8 +5,10 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
+import AddIcon from '@material-ui/icons/Add'
 import GameCard from './components/GameCard'
 
 class Application extends React.Component {
@@ -72,6 +74,9 @@ class Application extends React.Component {
           Object.keys(this.state.games)
             .map(name => <GameCard key={name} name={name}/>)
         }
+        <Button variant="fab" color="primary" aria-label="Add">
+          <AddIcon />
+        </Button>
       </React.Fragment>
     );
   }

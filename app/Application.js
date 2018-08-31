@@ -2,14 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import 'typeface-roboto'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
-import MenuIcon from '@material-ui/icons/Menu'
-import AddIcon from '@material-ui/icons/Add'
-import GameCard from './components/GameCard'
+import GamesList from './components/GamesList'
+import Game from './components/Game'
 
 class Application extends React.Component {
   constructor() {
@@ -18,9 +12,12 @@ class Application extends React.Component {
     this.createNewGame = this.createNewGame.bind(this)
     this.deleteGame = this.deleteGame.bind(this)
     this.addNewCharacter = this.addNewCharacter.bind(this)
+    this.showGameList = this.showGameList.bind(this)
+    this.showGame = this.showGame.bind(this)
 
     this.state = {
-      games: {}
+      games: {},
+      selectedGame: null
     }
   }
 
@@ -56,27 +53,24 @@ class Application extends React.Component {
     this.setState( {games} );
   }
 
+  showGameList() {
+    this.setState({ selectedGame: null })
+  }
+
+  showGame(name) {
+    this.setState({ selectedGame: name })
+  }
+
   render() {
+    if(this.state.selectedGame)
+      var page = <Game game={this.state.games[this.state.selectedGame]} showGameList={this.showGameList} addNewCharacter={this.addNewCharacter}/>
+    else
+      var page = <GamesList games = {this.state.games} showGame = {this.showGame}/>
+
     return (
       <React.Fragment>
         <CssBaseline />
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton color="inherit" aria-label="Menu">
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="title" color="inherit">
-            Game List
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        {
-          Object.keys(this.state.games)
-            .map(name => <GameCard key={name} name={name}/>)
-        }
-        <Button variant="fab" color="primary" aria-label="Add">
-          <AddIcon />
-        </Button>
+        {page}
       </React.Fragment>
     );
   }

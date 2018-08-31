@@ -1,5 +1,4 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom'
 import Character from './character'
 import CharacterEdit from './CharacterEdit'
 import SingleCharacterRolling from "./single-character-rolling"
@@ -13,7 +12,7 @@ import MenuIcon from '@material-ui/icons/Menu'
 import Drawer from '@material-ui/core/Drawer'
 import StarIcon from '@material-ui/icons/Star'
 
-class Game extends React.Component {
+export default class Game extends React.Component {
   constructor() {
     super()
 
@@ -32,33 +31,30 @@ class Game extends React.Component {
   }
 
   componentWillMount() {
-    var path = this.props.history.location.pathname.split('/')
-    this.setState({ gameName: path[path.length - 1]})
+    this.setState({ gameName: this.props.game.name })
   }
 
   addCharacter(character) {
-    const characters = {...this.props.games[this.state.gameName].characters}
-    characters[character.name] = character
     this.props.addNewCharacter(this.state.gameName, character)
   }
 
   showCharacter(name) {
-    const characterData = this.props.games[this.state.gameName].characters[name]
+    const characterData = this.props.game.characters[name]
     const character = <Character name={characterData.name} race={characterData.race}
       socialClass={characterData.socialClass} stats={characterData.stats} minors={characterData.minors} editCharacter={this.editCharacter}/>
     this.setState({ info: character, currentCharacterName: characterData.name })
   }
 
   editCharacter() {
-    const characterData = this.props.games[this.state.gameName].characters[this.state.currentCharacterName]
+    const characterData = this.props.game.characters[this.state.currentCharacterName]
     const characterEdit = <CharacterEdit name={characterData.name} editCharacter={this.editSingleCharacter}/>
     this.setState({ info: characterEdit })
   }
 
   editSingleCharacter(prop) {
-    const characters = {...this.props.games[this.state.gameName].characters}
+    const characters = {...this.props.game.characters}
     characters[this.state.currentCharacterName][prop] = event.target.value
-    this.props.games[this.state.gameName].characters = characters
+    //this.props.game.characters = characters
   }
 
   toggleDrawer(open) {
@@ -85,7 +81,7 @@ class Game extends React.Component {
             onClick={() => {this.toggleDrawer(false)}}
             onKeyDown={() => {this.toggleDrawer(false)}}
           >
-          <Button variant="contained" color="primary" onClick={ () => {this.props.history.push('/')} }>
+          <Button variant="contained" color="primary" onClick={ () => {this.props.showGameList()} }>
             <StarIcon/>
             Game List
           </Button>
@@ -95,7 +91,7 @@ class Game extends React.Component {
           <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
             <ul className="list-group">
               {
-                Object.keys(this.props.games[this.state.gameName].characters)
+                Object.keys(this.props.game.characters)
                   .map(name => <button key={name} name={name} onClick={() => {this.showCharacter(name)} } className="list-group-item list-group-item-action">{name}</button>)
               }
             </ul>
@@ -110,5 +106,3 @@ class Game extends React.Component {
     );
   }
 }
-
-export default withRouter(Game)

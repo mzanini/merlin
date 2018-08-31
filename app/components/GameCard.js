@@ -7,7 +7,7 @@ export default class GameCard extends React.Component {
   render() {
     return (
       <Card>
-        <CardActionArea onClick={ ()=> {this.props.startGame} }>
+        <CardActionArea onClick={ ()=> {this.props.showGame(this.props.name)} }>
           <Typography variant="headline">
             {this.props.name}
           </Typography>

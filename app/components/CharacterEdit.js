@@ -13,7 +13,7 @@ export default class CharacterEdit extends React.Component {
             id="name"
             label="Name"
             value={this.props.name}
-            onChange={this.props.editCharacter('name')}
+            onChange={ (event) => {this.props.editCharacter('name', event.target.value)} }
             margin="normal"
           />
         </CardContent>

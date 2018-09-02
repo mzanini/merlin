@@ -18,43 +18,37 @@ export default class Game extends React.Component {
 
     this.addCharacter = this.addCharacter.bind(this)
     this.showCharacter = this.showCharacter.bind(this)
+    this.showEditCharacter = this.showEditCharacter.bind(this)
     this.editCharacter = this.editCharacter.bind(this)
-    this.editSingleCharacter = this.editSingleCharacter.bind(this)
     this.toggleDrawer = this.toggleDrawer.bind(this)
 
     this.state = {
-      gameName: '',
       info: null,
       currentCharacterName: null,
       drawerOpen: false
     }
   }
 
-  componentWillMount() {
-    this.setState({ gameName: this.props.game.name })
-  }
-
   addCharacter(character) {
-    this.props.addNewCharacter(this.state.gameName, character)
+    this.props.addNewCharacter(this.props.game.name, character)
   }
 
   showCharacter(name) {
     const characterData = this.props.game.characters[name]
     const character = <Character name={characterData.name} race={characterData.race}
-      socialClass={characterData.socialClass} stats={characterData.stats} minors={characterData.minors} editCharacter={this.editCharacter}/>
+      socialClass={characterData.socialClass} stats={characterData.stats} minors={characterData.minors} showEditCharacter={this.showEditCharacter}/>
     this.setState({ info: character, currentCharacterName: characterData.name })
   }
 
-  editCharacter() {
-    const characterData = this.props.game.characters[this.state.currentCharacterName]
-    const characterEdit = <CharacterEdit name={characterData.name} editCharacter={this.editSingleCharacter}/>
+  showEditCharacter(name) {
+    const characterEdit = <CharacterEdit name={name} editCharacter={this.editCharacter}/>
     this.setState({ info: characterEdit })
   }
 
-  editSingleCharacter(prop) {
+  editCharacter(propName, value) {
     const characters = {...this.props.game.characters}
-    characters[this.state.currentCharacterName][prop] = event.target.value
-    //this.props.game.characters = characters
+    characters[this.state.currentCharacterName][propName] = value
+    this.props.updateCharacter(this.props.game.name, this.state.currentCharacterName, characters[this.state.currentCharacterName])
   }
 
   toggleDrawer(open) {
@@ -70,7 +64,7 @@ export default class Game extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="title" color="inherit">
-              {this.state.gameName}
+              {this.props.game.name}
             </Typography>
           </Toolbar>
         </AppBar>

@@ -12,6 +12,7 @@ class Application extends React.Component {
     this.createNewGame = this.createNewGame.bind(this)
     this.deleteGame = this.deleteGame.bind(this)
     this.addNewCharacter = this.addNewCharacter.bind(this)
+    this.updateCharacter = this.updateCharacter.bind(this)
     this.showGameList = this.showGameList.bind(this)
     this.showGame = this.showGame.bind(this)
 
@@ -47,6 +48,14 @@ class Application extends React.Component {
     this.setState({ games })
   }
 
+  updateCharacter(gameName, characterName, newCharacter) {
+    const newGames = {...this.state.games}
+    const characters = {...newGames[gameName].characters}
+    characters[characterName] = newCharacter
+    newGames[gameName].characters = characters
+    this.setState({ games: newGames })
+  }
+
   deleteGame(gameName) {
     const games = {...this.state.games}
     delete games[gameName];
@@ -63,7 +72,8 @@ class Application extends React.Component {
 
   render() {
     if(this.state.selectedGame)
-      var page = <Game game={this.state.games[this.state.selectedGame]} showGameList={this.showGameList} addNewCharacter={this.addNewCharacter}/>
+      var page = <Game game={this.state.games[this.state.selectedGame]} showGameList={this.showGameList} addNewCharacter={this.addNewCharacter}
+        updateCharacter={this.updateCharacter}/>
     else
       var page = <GamesList games = {this.state.games} showGame = {this.showGame}/>
 

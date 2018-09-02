@@ -10,69 +10,69 @@ import TableCell from '@material-ui/core/TableCell'
 import TableRow from '@material-ui/core/TableRow'
 import EditIcon from '@material-ui/icons/Edit'
 
-export default class Character extends React.Component {
-  render() {
-    return (
-      <Card>
-      <CardContent>
-        <Typography color="textSecondary">
-          {this.props.name}
-        </Typography>
-        <Typography variant="headline" component="h2">
-          {this.props.race}
-        </Typography>
-        <Table>
-        <TableBody>
-          <TableRow>
-            <TableCell>Social Class</TableCell>
-            <TableCell>{this.props.socialClass}</TableCell>
-          </TableRow>
-          {this.props.minors ?
-            this.props.minors.map(function(ability, index) {
-              return (
-                <TableRow key={index}>
-                  <TableCell component="th" scope="row">
-                    Minor ability
-                  </TableCell>
-                  <TableCell numeric>{ability}</TableCell>
-                </TableRow>
-              );
-            })
-            : null
-          }
-          <TableRow>
-            <TableCell>Strength</TableCell>
-            <TableCell>{this.props.stats.strength}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Intelligence</TableCell>
-            <TableCell>{this.props.stats.intelligence}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Wisdom</TableCell>
-            <TableCell>{this.props.stats.wisdom}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Constitution</TableCell>
-            <TableCell>{this.props.stats.constitution}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Dexterity</TableCell>
-            <TableCell>{this.props.stats.dexterity}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Charisma</TableCell>
-            <TableCell>{this.props.stats.charisma}</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-      </CardContent>
-      <CardActions>
-        <Button size="small">
-          <EditIcon onClick={() => {this.props.showEditCharacter(this.props.name) }}/>
-        </Button>
-      </CardActions>
-    </Card>
-    );
-  }
+const Character = (props) => {
+  return(
+  <Card>
+    <CardContent>
+      <Typography color="textSecondary">
+        {props.name}
+      </Typography>
+      <Typography variant="headline" component="h2">
+        {props.race}
+      </Typography>
+      <Table>
+      <TableBody>
+        <TableRow>
+          <TableCell>Social Class</TableCell>
+          <TableCell>{props.socialClass}</TableCell>
+        </TableRow>
+        {props.minors ?
+          props.minors.map(function(ability, index) {
+            return (
+              <TableRow key={index}>
+                <TableCell component="th" scope="row">
+                  Minor ability
+                </TableCell>
+                <TableCell numeric>{ability}</TableCell>
+              </TableRow>
+            );
+          })
+          : null
+        }
+        <TableRow>
+          <TableCell>Strength</TableCell>
+          <TableCell>{props.stats.strength}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Intelligence</TableCell>
+          <TableCell>{props.stats.intelligence}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Wisdom</TableCell>
+          <TableCell>{props.stats.wisdom}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Constitution</TableCell>
+          <TableCell>{props.stats.constitution}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Dexterity</TableCell>
+          <TableCell>{props.stats.dexterity}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Charisma</TableCell>
+          <TableCell>{props.stats.charisma}</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+    </CardContent>
+    <CardActions>
+      <Button size="small">
+        <EditIcon onClick={() => {props.showEditCharacter(props.name) }}/>
+      </Button>
+    </CardActions>
+  </Card>
+  );
 }
+
+export default Character;

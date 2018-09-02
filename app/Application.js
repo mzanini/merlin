@@ -4,6 +4,11 @@ import 'typeface-roboto'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import GamesList from './components/GamesList'
 import Game from './components/Game'
+import { createStore } from 'redux'
+import myReducer from './reducers'
+import { Provider } from 'react-redux'
+
+const store = createStore(myReducer)
 
 class Application extends React.Component {
   constructor() {
@@ -86,5 +91,5 @@ class Application extends React.Component {
   }
 }
 
-ReactDOM.render(<Application/>, document.querySelector('#app'))
+ReactDOM.render(<Provider store={store}><Application/></Provider>, document.querySelector('#app'))
 

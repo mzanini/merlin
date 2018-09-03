@@ -7,3 +7,4 @@ export const SELECT_GAME = 'SELECT_GAME'
 export const DELETE_GAME = 'DELETE_GAME'
 
 export const SHOW_NEW_GAME_PAGE = 'SHOW_NEW_GAME_PAGE'
+export const CHANGE_NEW_GAME_NAME = 'CHANGE_NEW_GAME_NAME'

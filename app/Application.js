@@ -2,11 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import 'typeface-roboto'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import GamesList from './components/GamesList'
+import GameList from './components/GameList'
 import Game from './components/Game'
 import { createStore } from 'redux'
 import myReducer from './reducers'
 import { Provider } from 'react-redux'
+import CreateNewGameButton from './containers/CreateNewGameButton'
 
 const store = createStore(myReducer)
 
@@ -80,7 +81,12 @@ class Application extends React.Component {
       var page = <Game game={this.state.games[this.state.selectedGame]} showGameList={this.showGameList} addNewCharacter={this.addNewCharacter}
         updateCharacter={this.updateCharacter}/>
     else
-      var page = <GamesList games = {this.state.games} showGame = {this.showGame}/>
+      var page = (
+        <React.Fragment>
+          <GameList games = {this.state.games} showGame = {this.showGame}/>
+          <CreateNewGameButton/>
+        </React.Fragment>
+      )
 
     return (
       <React.Fragment>

@@ -1,5 +1,5 @@
-import { CREATE_CHARACTER, CREATE_GAME } from './actionTypes'
-import { combineReducers } from 'redux';
+import { CREATE_CHARACTER, CREATE_GAME, SELECT_GAME } from './actionTypes'
+import { combineReducers } from 'redux'
 
 function characters(state = [], action) {
   switch(action.type) {
@@ -13,7 +13,9 @@ function characters(state = [], action) {
 function games(state = [], action) {
   switch(action.type) {
     case CREATE_GAME:
-      return { ...state, games: [...state.games, action.game]}
+      return { ...state, games: [...state.games, action.game] }
+    case SELECT_GAME:
+      return { ...state, selectedGame: action.gameId }
     default:
       return state
   }

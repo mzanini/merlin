@@ -3,7 +3,7 @@ import NewGameNameInput from '../containers/NewGameNameInput'
 import AllGamesList from '../containers/AllGamesList'
 
 const Page = ({ selectedGame, newGamePage }) => {
-  if(selectedGame)
+  if(typeof selectedGame != 'undefined' && selectedGame != null)
     return <div>selectedGame</div>
   else if(newGamePage)
     return <NewGameNameInput/>

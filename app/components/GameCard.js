@@ -3,9 +3,9 @@ import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import Typography from '@material-ui/core/Typography'
 
-const GameCard = ({name, selectGame}) => (
+const GameCard = ({name, id, selectGame}) => (
   <Card>
-    <CardActionArea onClick={ ()=> {selectGame(name)} }>
+    <CardActionArea onClick={ () => selectGame(id) }>
       <Typography variant="headline">
         {name}
       </Typography>

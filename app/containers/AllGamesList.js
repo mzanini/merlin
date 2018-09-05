@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import GameList from '../components/GameList'
-import selectGame from '../actions'
+import { selectGame } from '../actions'
 
 const mapStateToProps = state => {
   return {
@@ -8,7 +8,7 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     selectGame: id => {
       dispatch(selectGame(id))

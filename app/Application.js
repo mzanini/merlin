@@ -2,13 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import 'typeface-roboto'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import GameList from './components/GameList'
 import Game from './components/Game'
 import { createStore } from 'redux'
 import myReducer from './reducers'
 import { Provider } from 'react-redux'
 import CreateNewGameButton from './containers/CreateNewGameButton'
 import AppPage from './containers/AppPage'
+import MainPageHeader from './containers/MainPageHeader';
 
 const store = createStore(myReducer)
 
@@ -84,6 +84,7 @@ class Application extends React.Component {
     else
       var page = (
         <React.Fragment>
+          <MainPageHeader/>
           <AppPage/>
           <CreateNewGameButton/>
         </React.Fragment>

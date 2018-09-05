@@ -4,13 +4,6 @@ import CharacterEdit from './CharacterEdit'
 import SingleCharacterRolling from "./single-character-rolling"
 import { ipcRenderer } from 'electron'
 import Button from '@material-ui/core/Button'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import IconButton from '@material-ui/core/IconButton'
-import MenuIcon from '@material-ui/icons/Menu'
-import Drawer from '@material-ui/core/Drawer'
-import StarIcon from '@material-ui/icons/Star'
 
 export default class Game extends React.Component {
   constructor() {
@@ -58,29 +51,6 @@ export default class Game extends React.Component {
   render() {
     return (
       <div  className="container-fluid">
-        <AppBar position="static">
-          <Toolbar variant="dense">
-            <IconButton color="inherit" aria-label="Menu" onClick={() => {this.toggleDrawer(true)}}>
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="title" color="inherit">
-              {this.props.game.name}
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Drawer open={this.state.drawerOpen} onClose={() => {this.toggleDrawer(false)}}>
-          <div
-            tabIndex={0}
-            role="button"
-            onClick={() => {this.toggleDrawer(false)}}
-            onKeyDown={() => {this.toggleDrawer(false)}}
-          >
-          <Button variant="contained" color="primary" onClick={ () => {this.props.showGameList()} }>
-            <StarIcon/>
-            Game List
-          </Button>
-          </div>
-        </Drawer>
         <div className="row">
           <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
             <ul className="list-group">

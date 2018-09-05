@@ -1,7 +1,8 @@
-import { CREATE_CHARACTER, CREATE_GAME, SELECT_GAME, CHANGE_NEW_GAME_NAME, SHOW_NEW_GAME_PAGE } from './actionTypes'
+import { CREATE_CHARACTER, CREATE_GAME, SELECT_GAME, CHANGE_NEW_GAME_NAME, SHOW_NEW_GAME_PAGE, TOGGLE_DRAWER, SHOW_GAME_LIST } from './actionTypes'
 
 const initialState = {
   newGamePage: false,
+  drawerOpen: false,
   newGameName: '',
   games: []
 }
@@ -19,6 +20,10 @@ function myReducer(state, action) {
       return { ...state, newGameName: action.newGameName }
     case SHOW_NEW_GAME_PAGE:
       return { ...state, newGamePage: true }
+    case SHOW_GAME_LIST:
+      return { ...state, newGamePage: false, selectedGame: null }
+    case TOGGLE_DRAWER:
+      return { ...state, drawerOpen: action.drawerOpen }
     default:
       return initialState
   }

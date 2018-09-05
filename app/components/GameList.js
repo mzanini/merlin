@@ -19,8 +19,9 @@ const GameList = ({ games, selectGame }) => (
       </Toolbar>
     </AppBar>
     {
-      Object.keys(games)
-        .map(name => <GameCard key={name} name={name} selectGame={selectGame}/>)
+      games ?
+      games.map( (game, index) => <GameCard key={index} name={game.name} selectGame={selectGame}/>)
+        : null
     }
   </React.Fragment>
 )

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import GameList from '../components/GameList'
-import selectGame from './actions'
+import selectGame from '../actions'
 
 const mapStateToProps = state => {
   return {

@@ -8,6 +8,7 @@ import { createStore } from 'redux'
 import myReducer from './reducers'
 import { Provider } from 'react-redux'
 import CreateNewGameButton from './containers/CreateNewGameButton'
+import AppPage from './containers/AppPage'
 
 const store = createStore(myReducer)
 
@@ -83,7 +84,7 @@ class Application extends React.Component {
     else
       var page = (
         <React.Fragment>
-          <GameList games = {this.state.games} showGame = {this.showGame}/>
+          <AppPage/>
           <CreateNewGameButton/>
         </React.Fragment>
       )

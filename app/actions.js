@@ -1,7 +1,7 @@
-import { ADD_CHARACTER, CREATE_GAME, SELECT_GAME, SHOW_NEW_GAME_PAGE, CHANGE_NEW_GAME_NAME, TOGGLE_DRAWER, SHOW_GAME_LIST } from './actionTypes'
+import { CREATE_GAME, SELECT_GAME, SHOW_NEW_GAME_PAGE, CHANGE_NEW_GAME_NAME, CHANGE_NEW_CHARACTER_NAME, TOGGLE_DRAWER, SHOW_GAME_LIST, CREATE_CHARACTER, SHOW_CREATE_CHARACTER_PAGE } from './actionTypes'
 
-export function createCharacter(newCharacter) {
-  return { type: ADD_CHARACTER, character: newCharacter }
+export function createCharacter(name) {
+  return { type: CREATE_CHARACTER, name: name }
 }
 
 export function createGame(name) {
@@ -16,6 +16,10 @@ export function showNewGamePage() {
   return { type: SHOW_NEW_GAME_PAGE, newGamePage: true }
 }
 
+export function showCreateCharacterPage() {
+  return { type: SHOW_CREATE_CHARACTER_PAGE }
+}
+
 export function showGameList() {
   return { type: SHOW_GAME_LIST }
 }
@@ -26,4 +30,8 @@ export function toggleDrawer(drawerOpen) {
 
 export function changeNewGameName(gameName) {
   return { type: CHANGE_NEW_GAME_NAME, newGameName: gameName }
+}
+
+export function changeNewCharacterName(name) {
+  return { type: CHANGE_NEW_CHARACTER_NAME, newCharacterName: name }
 }

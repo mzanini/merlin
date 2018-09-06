@@ -6,7 +6,6 @@ import Game from './components/Game'
 import { createStore } from 'redux'
 import myReducer from './reducers'
 import { Provider } from 'react-redux'
-import CreateNewGameButton from './containers/CreateNewGameButton'
 import AppPage from './containers/AppPage'
 import MainPageHeader from './containers/MainPageHeader';
 
@@ -86,7 +85,6 @@ class Application extends React.Component {
         <React.Fragment>
           <MainPageHeader/>
           <AppPage/>
-          <CreateNewGameButton/>
         </React.Fragment>
       )
 

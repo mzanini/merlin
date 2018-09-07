@@ -3,13 +3,12 @@ import ReactDOM from 'react-dom'
 import 'typeface-roboto'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Game from './components/Game'
-import { createStore } from 'redux'
-import myReducer from './reducers'
 import { Provider } from 'react-redux'
 import AppPage from './containers/AppPage'
-import MainPageHeader from './containers/MainPageHeader';
-
-const store = createStore(myReducer)
+import MainPageHeader from './containers/MainPageHeader'
+import store from './store'
+import { loadGames } from './actions'
+import { LOAD_GAMES } from './actionTypes'
 
 class Application extends React.Component {
   constructor() {
@@ -21,11 +20,6 @@ class Application extends React.Component {
     this.updateCharacter = this.updateCharacter.bind(this)
     this.showGameList = this.showGameList.bind(this)
     this.showGame = this.showGame.bind(this)
-
-    this.state = {
-      games: {},
-      selectedGame: null
-    }
   }
 
   componentWillMount() {
@@ -96,6 +90,8 @@ class Application extends React.Component {
     );
   }
 }
+
+store.dispatch(loadGames(LOAD_GAMES));
 
 ReactDOM.render(<Provider store={store}><Application/></Provider>, document.querySelector('#app'))
 

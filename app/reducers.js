@@ -3,8 +3,6 @@ import {
   CREATE_GAME,
   SELECT_GAME,
   LOAD_GAMES,
-  CHANGE_NEW_GAME_NAME,
-  SHOW_NEW_GAME_PAGE,
   TOGGLE_DRAWER,
   SHOW_GAME_LIST,
   SHOW_CREATE_CHARACTER_PAGE,
@@ -22,12 +20,8 @@ function myReducer(state = initialState, action) {
       return { ...state, games: [...state.games, action.payload], newGamePage:false }
     case SELECT_GAME:
       return { ...state, selectedGame: action.gameId }
-    case CHANGE_NEW_GAME_NAME:
-      return { ...state, newGameName: action.newGameName }
     case CHANGE_NEW_CHARACTER_NAME:
       return { ...state, newCharacterName: action.newCharacterName }
-    case SHOW_NEW_GAME_PAGE:
-      return { ...state, newGamePage: true }
     case SHOW_GAME_LIST:
       return { ...state, newGamePage: false, selectedGame: null }
     case SHOW_CREATE_CHARACTER_PAGE:

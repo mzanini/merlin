@@ -2,20 +2,16 @@ import { connect } from 'react-redux'
 import ConfirmText from '../components/ConfirmText'
 import { changeNewGameName, createGame } from '../actions'
 
-const mapStateToProps = state => {
+const mapStateToProps = () => {
   return {
-    textFieldLabel: 'Name',
-    textFieldValue: state.newGameName,
+    label: 'Name',
     buttonText: 'Create New Game'
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onChangeTextFieldAction: gameName => {
-      dispatch(changeNewGameName(gameName))
-    },
-    confirmAction: (gameName) => {
+    handleConfirmAction: (gameName) => {
       dispatch(createGame(gameName))
     }
   }

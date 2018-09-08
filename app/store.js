@@ -5,11 +5,11 @@ import myReducer from './reducers'
 export const initialState = {
   games: [],
   characters: [],
-  newGamePage: false,
-  drawerOpen: false,
-  newCharacterPage: false,
-  newGameName: '',
-  newCharacterName: ''
+  ui: {
+    drawerOpen: false,
+    newCharacterPage: false,
+    newCharacterName: ''
+  }
 }
 
 const store = createStore(

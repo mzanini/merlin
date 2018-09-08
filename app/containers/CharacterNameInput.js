@@ -1,21 +1,17 @@
 import { connect } from 'react-redux'
 import ConfirmText from '../components/ConfirmText'
-import { changeNewCharacterName, createCharacter } from '../actions'
+import { createCharacter } from '../actions'
 
 const mapStateToProps = state => {
   return {
-    textFieldLabel: 'Name',
-    textFieldValue: state.newCharacterName,
+    label: 'Name',
     buttonText: 'Create New Character'
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onChangeTextFieldAction: characterName => {
-      dispatch(changeNewCharacterName(characterName))
-    },
-    confirmAction: (characterName) => {
+    handleConfirmAction: (characterName) => {
       dispatch(createCharacter(characterName))
     }
   }

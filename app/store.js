@@ -6,9 +6,7 @@ export const initialState = {
   games: [],
   characters: [],
   ui: {
-    drawerOpen: false,
-    newCharacterPage: false,
-    newCharacterName: ''
+    drawerOpen: false
   }
 }
 

@@ -1,16 +1,14 @@
 import React from 'react'
-import CreateNewCharacterButton from '../containers/CreateNewCharacterButton'
 import CharacterNameInput from '../containers/CharacterNameInput'
+import AllCharactersList from '../containers/AllCharactersList';
 
-const GamePage = ({ createNewCharacter }) => {
-  if(createNewCharacter == true)
-    return <CharacterNameInput/>
-  else
-    return (
-      <React.Fragment>
-        <CreateNewCharacterButton/>
-      </React.Fragment>
-    )
+const GamePage = () => {
+  return (
+    <React.Fragment>
+      <AllCharactersList/>
+      <CharacterNameInput/>
+    </React.Fragment>
+  )
 }
 
 export default GamePage

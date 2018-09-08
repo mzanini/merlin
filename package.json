@@ -49,7 +49,6 @@
     "@material-ui/core": "3.0.1",
     "@material-ui/icons": "3.0.1",
     "autoprefixer": "9.1.3",
-    "bootstrap": "4.1.3",
     "chance": "1.0.16",
     "dexie": "2.0.4",
     "electron-debug": "2.0.0",

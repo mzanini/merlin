@@ -3,8 +3,7 @@ import Page from '../components/Page'
 
 const mapStateToProps = state => {
   return {
-    selectedGame: state.selectedGame,
-    newGamePage: state.newGamePage
+    selectedGame: state.ui.selectedGame
   }
 }
 

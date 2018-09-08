@@ -1,5 +1,4 @@
 import React from 'react'
-import NewGameNameInput from '../containers/NewGameNameInput'
 import ActiveGamePage from '../containers/ActiveGamePage'
 import GamesPage from './GamesPage'
 

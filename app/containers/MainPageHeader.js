@@ -4,13 +4,13 @@ import { toggleDrawer, showGameList } from '../actions'
 
 const mapStateToProps = state => {
   var title = 'Games List'
-  if(typeof state.selectedGame != 'undefined' && state.selectedGame != null) {
-    title = state.games[state.selectedGame].name
+  if(typeof state.ui.selectedGame != 'undefined' && state.ui.selectedGame != null) {
+    title = state.games[state.ui.selectedGame].name
   }
 
   return {
     name: title,
-    drawerOpen: state.drawerOpen
+    drawerOpen: state.ui.drawerOpen
   }
 }
 

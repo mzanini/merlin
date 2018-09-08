@@ -21,7 +21,17 @@ export function loadGames() {
 }
 
 export function createCharacter(name) {
-  return { type: CREATE_CHARACTER, name: name }
+  return (dispatch) => {
+    const characterToAdd = { name }
+    db.table('characters')
+      .add(characterToAdd)
+      .then((id) => {
+         dispatch({
+           type: CREATE_CHARACTER,
+           payload: Object.assign({}, characterToAdd, { id }),
+         });
+      });
+  }
 }
 
 export function createGame(name) {

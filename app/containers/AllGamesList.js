@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import GameList from '../components/GameList'
 import { selectGame } from '../actions'
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     games: state.games
   }

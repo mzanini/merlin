@@ -4,8 +4,8 @@ import { toggleDrawer, showGameList } from '../actions'
 
 const mapStateToProps = state => {
   var title = 'Games List'
-  if(typeof state.ui.selectedGame != 'undefined' && state.ui.selectedGame != null) {
-    title = state.games[state.ui.selectedGame].name
+  if(typeof state.ui.selectedGameId != 'undefined' && state.ui.selectedGameId != null) {
+    title = state.games.find((game) => game.id === state.ui.selectedGameId).name
   }
 
   return {

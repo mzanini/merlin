@@ -4,7 +4,8 @@ import {
   SELECT_GAME,
   LOAD_GAMES,
   TOGGLE_DRAWER,
-  SHOW_GAME_LIST } from './actionTypes'
+  SHOW_GAME_LIST,
+  DELETE_GAME} from './actionTypes'
 import { combineReducers } from 'redux'
 
 export const initialState = {
@@ -12,16 +13,16 @@ export const initialState = {
   characters: [],
   ui: {
     drawerOpen: false,
-    selectedGame: null
+    selectedGameId: null
   }
 }
 
 function ui(state=initialState.ui, action){
   switch(action.type){
     case SELECT_GAME:
-      return { ...state, selectedGame: action.gameId }
+      return { ...state, selectedGameId: action.gameId }
     case SHOW_GAME_LIST:
-      return { ...state, selectedGame: null }
+      return { ...state, selectedGameId: null }
     case TOGGLE_DRAWER:
       return { ...state, drawerOpen: action.drawerOpen }
     default:
@@ -35,6 +36,8 @@ function games(state=initialState.games, action){
       return state = action.payload
     case CREATE_GAME:
       return [...state, action.payload]
+    case DELETE_GAME:
+      return state = state.filter((game) => game.id !== action.payload)
     default:
       return state
   }

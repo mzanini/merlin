@@ -2,6 +2,7 @@ import {
   CREATE_GAME,
   SELECT_GAME,
   LOAD_GAMES,
+  DELETE_GAME,
   TOGGLE_DRAWER,
   SHOW_GAME_LIST,
   CREATE_CHARACTER } from './actionTypes'
@@ -18,6 +19,19 @@ export function loadGames() {
         })
       })
   }
+}
+
+export function deleteGame(id) {
+  return (dispatch) => {
+    db.table('games')
+      .delete(id)
+      .then(() => {
+        dispatch({
+          type: DELETE_GAME,
+          payload: id,
+        });
+      });
+  };
 }
 
 export function createCharacter(name) {

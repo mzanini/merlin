@@ -5,7 +5,8 @@ import {
   DELETE_GAME,
   TOGGLE_DRAWER,
   SHOW_GAME_LIST,
-  CREATE_CHARACTER } from './actionTypes'
+  CREATE_CHARACTER,
+  LOAD_CHARACTERS } from './actionTypes'
 import db from './db'
 
 export function loadGames() {
@@ -16,6 +17,19 @@ export function loadGames() {
         dispatch({
           type: LOAD_GAMES,
           payload: games,
+        })
+      })
+  }
+}
+
+export function loadCharacters() {
+  return (dispatch) => {
+    db.table('characters')
+      .toArray()
+      .then((characters) => {
+        dispatch({
+          type: LOAD_CHARACTERS,
+          payload: characters,
         })
       })
   }
@@ -34,9 +48,9 @@ export function deleteGame(id) {
   };
 }
 
-export function createCharacter(name) {
+export function createCharacter(name, gameId) {
   return (dispatch) => {
-    const characterToAdd = { name }
+    const characterToAdd = { name, game: gameId }
     db.table('characters')
       .add(characterToAdd)
       .then((id) => {

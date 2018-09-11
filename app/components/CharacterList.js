@@ -1,14 +1,20 @@
 import React from 'react'
 import CharacterCard from './CharacterCard'
 
-const CharacterList = ({ characters }) => (
-  <React.Fragment>
-    {
-      characters ?
-      characters.map( (character, index) => <CharacterCard key={index} name={character.name} id={index}/>)
-        : null
-    }
-  </React.Fragment>
-)
+const CharacterList = ({ characters, filter }) => {
+  var filteredCharacters = characters
+  if(typeof filter != 'undefined' && filter != null)
+    filteredCharacters = characters.filter(filter)
+
+  return (
+    <React.Fragment>
+      {
+        filteredCharacters ?
+        filteredCharacters.map( (character) => <CharacterCard key={character.id} name={character.name} id={character.id}/>)
+          : null
+      }
+    </React.Fragment>
+  )
+}
 
 export default CharacterList

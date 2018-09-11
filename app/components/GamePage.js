@@ -1,11 +1,11 @@
 import React from 'react'
 import CharacterNameInput from '../containers/CharacterNameInput'
-import AllCharactersList from '../containers/AllCharactersList';
+import GameCharactersList from '../containers/GameCharactersList'
 
 const GamePage = () => {
   return (
     <React.Fragment>
-      <AllCharactersList/>
+      <GameCharactersList/>
       <CharacterNameInput/>
     </React.Fragment>
   )

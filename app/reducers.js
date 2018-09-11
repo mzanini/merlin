@@ -5,7 +5,8 @@ import {
   LOAD_GAMES,
   TOGGLE_DRAWER,
   SHOW_GAME_LIST,
-  DELETE_GAME} from './actionTypes'
+  DELETE_GAME,
+  LOAD_CHARACTERS } from './actionTypes'
 import { combineReducers } from 'redux'
 
 export const initialState = {
@@ -47,6 +48,8 @@ function characters(state=initialState.characters, action){
   switch(action.type) {
     case CREATE_CHARACTER:
       return [...state, action.payload]
+    case LOAD_CHARACTERS:
+      return state = action.payload
     default:
       return state
   }

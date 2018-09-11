@@ -6,8 +6,7 @@ import { Provider } from 'react-redux'
 import AppPage from './containers/AppPage'
 import MainPageHeader from './containers/MainPageHeader'
 import store from './store'
-import { loadGames } from './actions'
-import { LOAD_GAMES } from './actionTypes'
+import { loadGames, loadCharacters } from './actions'
 
 const Application = () => {
   return(
@@ -19,7 +18,8 @@ const Application = () => {
   )
 }
 
-store.dispatch(loadGames(LOAD_GAMES));
+store.dispatch(loadGames())
+store.dispatch(loadCharacters())
 
 ReactDOM.render(<Provider store={store}><Application/></Provider>, document.querySelector('#app'))
 

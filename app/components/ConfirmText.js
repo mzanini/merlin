@@ -12,7 +12,7 @@ class ConfirmText extends Component {
   }
 
   confirmAction() {
-    this.props.handleConfirmAction(this.state.value)
+    this.props.handleConfirmAction(this.state.value, this.props.id)
     this.setState({value: ''})
   }
 

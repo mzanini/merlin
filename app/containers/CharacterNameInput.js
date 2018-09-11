@@ -5,14 +5,15 @@ import { createCharacter } from '../actions'
 const mapStateToProps = state => {
   return {
     label: 'Name',
-    buttonText: 'Create New Character'
+    buttonText: 'Create New Character',
+    id: state.ui.selectedGameId
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleConfirmAction: (characterName) => {
-      dispatch(createCharacter(characterName))
+    handleConfirmAction: (characterName, gameId) => {
+      dispatch(createCharacter(characterName, gameId))
     }
   }
 }

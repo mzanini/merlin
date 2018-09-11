@@ -10,3 +10,4 @@ export const SHOW_GAME_LIST = 'SHOW_GAME_LIST'
 export const TOGGLE_DRAWER = 'TOGGLE_DRAWER'
 
 export const LOAD_GAMES = 'LOAD_GAMES'
+export const LOAD_CHARACTERS = 'LOAD_CHARACTERS'

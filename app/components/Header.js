@@ -5,8 +5,8 @@ import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import Drawer from '@material-ui/core/Drawer'
-import StarIcon from '@material-ui/icons/Star'
-import Button from '@material-ui/core/Button'
+import MenuItem from '@material-ui/core/MenuItem'
+import MenuList from '@material-ui/core/MenuList'
 
 const Header = ({ name, drawerOpen, toggleDrawer, showGameList }) => (
   <React.Fragment>
@@ -27,10 +27,11 @@ const Header = ({ name, drawerOpen, toggleDrawer, showGameList }) => (
         onClick={ () => toggleDrawer(false) }
         onKeyDown={ () => toggleDrawer(false) }
       >
-      <Button variant="contained" color="primary" onClick={ () => showGameList() }>
-        <StarIcon/>
-        Game List
-      </Button>
+      <MenuList>
+        <MenuItem onClick={ () => showGameList() }>
+          Game List
+        </MenuItem>
+      </MenuList>
       </div>
     </Drawer>
   </React.Fragment>

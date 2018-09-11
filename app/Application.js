@@ -7,14 +7,16 @@ import AppPage from './containers/AppPage'
 import MainPageHeader from './containers/MainPageHeader'
 import store from './store'
 import { loadGames, loadCharacters } from './actions'
+import { MuiThemeProvider } from '@material-ui/core/styles'
+import { theme } from './theme'
 
 const Application = () => {
   return(
-    <React.Fragment>
+    <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <MainPageHeader/>
       <AppPage/>
-    </React.Fragment>
+    </MuiThemeProvider>
   )
 }
 

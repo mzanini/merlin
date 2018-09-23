@@ -4,17 +4,22 @@ import {
   SELECT_GAME,
   LOAD_GAMES,
   TOGGLE_DRAWER,
+  SHOW_GAME_PAGE,
   SHOW_GAME_LIST,
   DELETE_GAME,
   LOAD_CHARACTERS } from './actionTypes'
 import { combineReducers } from 'redux'
+
+export const GAME_PAGE_CHARACTERS = 'characters'
+export const GAME_PAGE_ROLL = 'roll'
 
 export const initialState = {
   games: [],
   characters: [],
   ui: {
     drawerOpen: false,
-    selectedGameId: null
+    selectedGameId: null,
+    gamePage: GAME_PAGE_CHARACTERS
   }
 }
 
@@ -26,6 +31,8 @@ function ui(state=initialState.ui, action){
       return { ...state, selectedGameId: null }
     case TOGGLE_DRAWER:
       return { ...state, drawerOpen: action.drawerOpen }
+    case SHOW_GAME_PAGE:
+      return { ...state, gamePage: action.payload }
     default:
       return state
   }

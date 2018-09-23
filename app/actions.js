@@ -6,7 +6,8 @@ import {
   TOGGLE_DRAWER,
   SHOW_GAME_LIST,
   CREATE_CHARACTER,
-  LOAD_CHARACTERS } from './actionTypes'
+  LOAD_CHARACTERS,
+  SHOW_GAME_PAGE} from './actionTypes'
 import db from './db'
 
 export function loadGames() {
@@ -86,4 +87,8 @@ export function showGameList() {
 
 export function toggleDrawer(drawerOpen) {
   return { type: TOGGLE_DRAWER, drawerOpen: drawerOpen }
+}
+
+export function showGamePage(newGamePage) {
+  return { type: SHOW_GAME_PAGE, payload: newGamePage }
 }

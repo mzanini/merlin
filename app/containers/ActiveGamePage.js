@@ -3,7 +3,7 @@ import GamePage from '../components/GamePage'
 
 const mapStateToProps = state => {
   return {
-    createNewCharacter: state.newCharacterPage
+    showPage: state.ui.gamePage
   }
 }
 

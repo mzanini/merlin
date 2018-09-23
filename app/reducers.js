@@ -7,7 +7,8 @@ import {
   SHOW_GAME_PAGE,
   SHOW_GAME_LIST,
   DELETE_GAME,
-  LOAD_CHARACTERS } from './actionTypes'
+  LOAD_CHARACTERS,
+  OPEN_SETTINGS } from './actionTypes'
 import { combineReducers } from 'redux'
 
 export const GAME_PAGE_CHARACTERS = 'characters'
@@ -19,27 +20,30 @@ export const initialState = {
   ui: {
     drawerOpen: false,
     selectedGameId: null,
-    gamePage: GAME_PAGE_CHARACTERS
+    gamePage: GAME_PAGE_CHARACTERS,
+    settingsOpen: false
   }
 }
 
-function ui(state=initialState.ui, action){
-  switch(action.type){
+function ui(state = initialState.ui, action) {
+  switch (action.type) {
     case SELECT_GAME:
       return { ...state, selectedGameId: action.gameId }
     case SHOW_GAME_LIST:
-      return { ...state, selectedGameId: null }
+      return { ...state, selectedGameId: null, settingsOpen: false }
     case TOGGLE_DRAWER:
       return { ...state, drawerOpen: action.drawerOpen }
     case SHOW_GAME_PAGE:
-      return { ...state, gamePage: action.payload }
+      return { ...state, gamePage: action.payload, settingsOpen: false }
+    case OPEN_SETTINGS:
+      return { ...state, settingsOpen: true }
     default:
       return state
   }
 }
 
-function games(state=initialState.games, action){
-  switch(action.type){
+function games(state = initialState.games, action) {
+  switch (action.type) {
     case LOAD_GAMES:
       return state = action.payload
     case CREATE_GAME:
@@ -51,8 +55,8 @@ function games(state=initialState.games, action){
   }
 }
 
-function characters(state=initialState.characters, action){
-  switch(action.type) {
+function characters(state = initialState.characters, action) {
+  switch (action.type) {
     case CREATE_CHARACTER:
       return [...state, action.payload]
     case LOAD_CHARACTERS:

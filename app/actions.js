@@ -7,7 +7,8 @@ import {
   SHOW_GAME_LIST,
   CREATE_CHARACTER,
   LOAD_CHARACTERS,
-  SHOW_GAME_PAGE} from './actionTypes'
+  SHOW_GAME_PAGE,
+  OPEN_SETTINGS } from './actionTypes'
 import db from './db'
 
 export function loadGames() {
@@ -17,7 +18,7 @@ export function loadGames() {
       .then((games) => {
         dispatch({
           type: LOAD_GAMES,
-          payload: games,
+          payload: games
         })
       })
   }
@@ -30,7 +31,7 @@ export function loadCharacters() {
       .then((characters) => {
         dispatch({
           type: LOAD_CHARACTERS,
-          payload: characters,
+          payload: characters
         })
       })
   }
@@ -43,10 +44,10 @@ export function deleteGame(id) {
       .then(() => {
         dispatch({
           type: DELETE_GAME,
-          payload: id,
-        });
-      });
-  };
+          payload: id
+        })
+      })
+  }
 }
 
 export function createCharacter(name, gameId) {
@@ -55,11 +56,11 @@ export function createCharacter(name, gameId) {
     db.table('characters')
       .add(characterToAdd)
       .then((id) => {
-         dispatch({
-           type: CREATE_CHARACTER,
-           payload: Object.assign({}, characterToAdd, { id }),
-         });
-      });
+        dispatch({
+          type: CREATE_CHARACTER,
+          payload: Object.assign({}, characterToAdd, { id })
+        })
+      })
   }
 }
 
@@ -69,11 +70,11 @@ export function createGame(name) {
     db.table('games')
       .add(gameToAdd)
       .then((id) => {
-         dispatch({
-           type: CREATE_GAME,
-           payload: Object.assign({}, gameToAdd, { id }),
-         });
-      });
+        dispatch({
+          type: CREATE_GAME,
+          payload: Object.assign({}, gameToAdd, { id })
+        })
+      })
   }
 }
 
@@ -91,4 +92,8 @@ export function toggleDrawer(drawerOpen) {
 
 export function showGamePage(newGamePage) {
   return { type: SHOW_GAME_PAGE, payload: newGamePage }
+}
+
+export function openSettings() {
+  return { type: OPEN_SETTINGS }
 }

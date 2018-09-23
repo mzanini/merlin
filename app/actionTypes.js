@@ -12,3 +12,5 @@ export const SHOW_GAME_PAGE = 'SHOW_GAME_PAGE'
 
 export const LOAD_GAMES = 'LOAD_GAMES'
 export const LOAD_CHARACTERS = 'LOAD_CHARACTERS'
+
+export const OPEN_SETTINGS = 'OPEN_SETTINGS'

@@ -6,8 +6,7 @@ module.exports = {
   context: path.join(__dirname, '/../app'),
   entry: {
     background: './background.js',
-    app: './Application.js',
-    tablesSelect: './tables-select.js'
+    app: './Application.js'
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
@@ -30,5 +29,8 @@ module.exports = {
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },
       { test: /\.(png|woff|woff2|eot|ttf|svg)$/, use: ['url-loader'] }
     ]
-  }
+  },
+  externals: [{
+    'electron-debug': 'electron-debug'
+  }]
 }

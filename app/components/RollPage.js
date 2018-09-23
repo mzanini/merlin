@@ -1,10 +1,8 @@
 import React from 'react'
-import { Typography } from '@material-ui/core';
+import Roll from './Roll'
 
 const RollPage = () => (
-  <Typography>
-    Roll Page
-  </Typography>
+  <Roll/>
 )
 
 export default RollPage

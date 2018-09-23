@@ -8,39 +8,39 @@ export default class Roll extends React.Component {
       adjust: 0,
       count: 1,
       rolls: []
-    };
+    }
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChangeFaces = this.handleChangeFaces.bind(this);
-    this.handleChangeDieAdjust = this.handleChangeDieAdjust.bind(this);
-    this.handleChangeDieCount = this.handleChangeDieCount.bind(this);
-    this.rollDie = this.rollDie.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChangeFaces = this.handleChangeFaces.bind(this)
+    this.handleChangeDieAdjust = this.handleChangeDieAdjust.bind(this)
+    this.handleChangeDieCount = this.handleChangeDieCount.bind(this)
+    this.rollDie = this.rollDie.bind(this)
   }
 
   handleChangeFaces(event) {
-    this.setState({faces: event.target.value});
+    this.setState({ faces: event.target.value })
   }
 
   handleChangeDieAdjust(event) {
-    this.setState({adjust: event.target.value});
+    this.setState({ adjust: event.target.value })
   }
 
   handleChangeDieCount(event) {
-    this.setState({count: event.target.value});
+    this.setState({ count: event.target.value })
   }
 
   handleSubmit(event) {
     // Prevent default form behavior that posts to the server
-    event.preventDefault();
-    this.rollDie();
+    event.preventDefault()
+    this.rollDie()
   }
 
   rollDie() {
     var newRolls = []
-    for(var i=0; i < this.state.count; i++)
-      newRolls.push(Math.floor( (Math.random() * this.state.faces) + 1) + this.state.adjust);
+    for (var i = 0; i < this.state.count; i++)
+      newRolls.push(Math.floor((Math.random() * this.state.faces) + 1) + this.state.adjust)
 
-    this.setState({rolls: newRolls})
+    this.setState({ rolls: newRolls })
   }
 
   render() {
@@ -69,7 +69,7 @@ export default class Roll extends React.Component {
           <div className="col-lg-8 col-md-8 col-sm-8 col-xs-8">
             <ul className="list-group list-group-flush result">
               {
-                this.state.rolls.map((number, index) => { return <li className="list-group-item" key={index}>{number}</li>} )
+                this.state.rolls.map((number, index) => { return <li className="list-group-item" key={index}>{number}</li> })
               }
             </ul>
           </div>

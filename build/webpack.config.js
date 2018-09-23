@@ -1,21 +1,20 @@
-const path = require('path');
+const path = require('path')
 
-var debug = process.env.NODE_ENV !== "production";
+var debug = process.env.NODE_ENV !== 'production'
 
 module.exports = {
-  context: __dirname + "/../app",
+  context: path.join(__dirname, '/../app'),
   entry: {
-    background: "./background.js",
-    app: "./Application.js",
-    roll: "./roll.js",
+    background: './background.js',
+    app: './Application.js',
     tablesSelect: './tables-select.js'
   },
   output: {
-    path: path.resolve(__dirname, "../dist"),
-		filename: "[name].js"
+    path: path.resolve(__dirname, '../dist'),
+    filename: '[name].js'
   },
-  target: "electron-main",
-  devtool: debug ? "inline-sourcemap" : null,
+  target: 'electron-main',
+  devtool: debug ? 'inline-sourcemap' : null,
   module: {
     rules: [
       {
@@ -32,4 +31,4 @@ module.exports = {
       { test: /\.(png|woff|woff2|eot|ttf|svg)$/, use: ['url-loader'] }
     ]
   }
-};
+}

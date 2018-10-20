@@ -23,12 +23,12 @@ const CharacterCard = ({ name, id, classes }) => (
       <Typography variant="headline">
         {name}
       </Typography>
-      <Stat name='strength' value='10'/>
-      <Stat name='intelligence' value='10'/>
-      <Stat name='Wisdom' value='10'/>
-      <Stat name='Constitution' value='10'/>
-      <Stat name='Dexterity' value='10'/>
-      <Stat name='Charisma' value='10'/>
+      <Stat name='strength' value={10}/>
+      <Stat name='intelligence' value={10}/>
+      <Stat name='Wisdom' value={10}/>
+      <Stat name='Constitution' value={10}/>
+      <Stat name='Dexterity' value={10}/>
+      <Stat name='Charisma' value={10}/>
     </CardActionArea>
   </Card>
 )

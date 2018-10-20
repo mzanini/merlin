@@ -14,7 +14,7 @@ const Page = ({ selectedGameId, settingsOpen }) => {
 }
 
 Page.propTypes = {
-  selectedGameId: PropTypes.string,
+  selectedGameId: PropTypes.number,
   settingsOpen: PropTypes.bool
 }
 

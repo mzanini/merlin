@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import CharacterList from '../components/CharacterList'
+import { deleteCharacter } from '../actions'
 
 const mapStateToProps = state => {
   return {
@@ -8,8 +9,17 @@ const mapStateToProps = state => {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteCharacter: id => {
+      dispatch(deleteCharacter(id))
+    }
+  }
+}
+
 const GameCharactersList = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(CharacterList)
 
 export default GameCharactersList

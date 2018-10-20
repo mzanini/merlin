@@ -8,7 +8,8 @@ import {
   SHOW_GAME_LIST,
   DELETE_GAME,
   LOAD_CHARACTERS,
-  OPEN_SETTINGS } from './actionTypes'
+  OPEN_SETTINGS,
+  DELETE_CHARACTER } from './actionTypes'
 import { combineReducers } from 'redux'
 
 export const GAME_PAGE_CHARACTERS = 'characters'
@@ -59,6 +60,8 @@ function characters(state = initialState.characters, action) {
   switch (action.type) {
     case CREATE_CHARACTER:
       return [...state, action.payload]
+    case DELETE_CHARACTER:
+      return state = state.filter((character) => character.id !== action.payload)
     case LOAD_CHARACTERS:
       return state = action.payload
     default:

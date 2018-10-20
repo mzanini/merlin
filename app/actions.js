@@ -8,7 +8,8 @@ import {
   CREATE_CHARACTER,
   LOAD_CHARACTERS,
   SHOW_GAME_PAGE,
-  OPEN_SETTINGS } from './actionTypes'
+  OPEN_SETTINGS,
+  DELETE_CHARACTER } from './actionTypes'
 import db from './db'
 
 export function loadGames() {
@@ -59,6 +60,19 @@ export function createCharacter(name, gameId) {
         dispatch({
           type: CREATE_CHARACTER,
           payload: Object.assign({}, characterToAdd, { id })
+        })
+      })
+  }
+}
+
+export function deleteCharacter(id) {
+  return (dispatch) => {
+    db.table('characters')
+      .delete(id)
+      .then(() => {
+        dispatch({
+          type: DELETE_CHARACTER,
+          payload: id
         })
       })
   }

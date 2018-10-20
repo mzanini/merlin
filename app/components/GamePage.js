@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import CharacterNameInput from '../containers/CharacterNameInput'
 import GameCharactersList from '../containers/GameCharactersList'
 import ActiveBottomNavigation from '../containers/ActiveBottomNavigation'
@@ -12,8 +13,7 @@ const GamePage = ({ showPage }) => {
       <CharacterNameInput/>
     </React.Fragment>
   )
-  console.log(GAME_PAGE_ROLL)
-  if(showPage === GAME_PAGE_ROLL)
+  if (showPage === GAME_PAGE_ROLL)
     actualPage = <RollPage/>
 
   return (
@@ -22,6 +22,10 @@ const GamePage = ({ showPage }) => {
       <ActiveBottomNavigation/>
     </React.Fragment>
   )
+}
+
+GamePage.propTypes = {
+  showPage: PropTypes.string
 }
 
 export default GamePage

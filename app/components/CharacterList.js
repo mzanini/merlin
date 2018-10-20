@@ -20,8 +20,8 @@ const CharacterList = ({ characters, filter, deleteCharacter }) => {
 
 CharacterList.propTypes = {
   characters: PropTypes.array,
-  filter: PropTypes.function,
-  deleteCharacter: PropTypes.function
+  filter: PropTypes.func,
+  deleteCharacter: PropTypes.func
 }
 
 export default CharacterList

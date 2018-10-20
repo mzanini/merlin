@@ -45,7 +45,7 @@ const CharacterCard = ({ name, id, deleteCharacter, classes }) => (
 CharacterCard.propTypes = {
   name: PropTypes.string,
   id: PropTypes.number,
-  deleteCharacter: PropTypes.function,
+  deleteCharacter: PropTypes.func,
   classes: PropTypes.object
 }
 

@@ -19,32 +19,31 @@ const styles = {
   }
 }
 
-const CharacterCard = ({ name, id, deleteCharacter, classes }) => (
+const CharacterCard = ({ character, deleteCharacter, classes }) => (
   <Card className={classes.card}>
     <Grid container spacing={16}>
       <Grid item>
         <CardActionArea>
           <Typography variant="headline">
-            {name}
+            {character.name}
           </Typography>
-          <Stat name='strength' value={10}/>
-          <Stat name='intelligence' value={10}/>
-          <Stat name='Wisdom' value={10}/>
-          <Stat name='Constitution' value={10}/>
-          <Stat name='Dexterity' value={10}/>
-          <Stat name='Charisma' value={10}/>
+          <Stat name='strength' value={character.strength}/>
+          <Stat name='intelligence' value={character.intelligence}/>
+          <Stat name='Wisdom' value={character.wisdom}/>
+          <Stat name='Constitution' value={character.constitution}/>
+          <Stat name='Dexterity' value={character.dexterity}/>
+          <Stat name='Charisma' value={character.charisma}/>
         </CardActionArea>
       </Grid>
       <Grid item>
-        <DeleteButton deleteAction={ () => deleteCharacter(id) }/>
+        <DeleteButton deleteAction={ () => deleteCharacter(character.id) }/>
       </Grid>
     </Grid>
   </Card>
 )
 
 CharacterCard.propTypes = {
-  name: PropTypes.string,
-  id: PropTypes.number,
+  character: PropTypes.object,
   deleteCharacter: PropTypes.func,
   classes: PropTypes.object
 }

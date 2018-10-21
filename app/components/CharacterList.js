@@ -11,7 +11,7 @@ const CharacterList = ({ characters, filter, deleteCharacter }) => {
     <React.Fragment>
       {
         filteredCharacters
-          ? filteredCharacters.map((character) => <CharacterCard key={character.id} name={character.name} id={character.id} deleteCharacter={deleteCharacter}/>)
+          ? filteredCharacters.map((character) => <CharacterCard key={character.id} character={character} deleteCharacter={deleteCharacter}/>)
           : null
       }
     </React.Fragment>

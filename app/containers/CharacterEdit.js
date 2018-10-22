@@ -3,7 +3,7 @@ import CharacterEditModal from '../components/CharacterEditModal'
 import { updateCharacter, closeCharacterEditModal } from '../actions'
 
 const mapStateToProps = state => {
-  const isModalOpen = state.ui.selectedCharacterId === null
+  const isModalOpen = state.ui.selectedCharacterId !== null
   return {
     isOpen: isModalOpen,
     character: state.characters.find((character) => character.id === state.ui.selectedCharacterId)

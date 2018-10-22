@@ -9,7 +9,10 @@ import {
   LOAD_CHARACTERS,
   SHOW_GAME_PAGE,
   OPEN_SETTINGS,
-  DELETE_CHARACTER } from './actionTypes'
+  DELETE_CHARACTER,
+  UPDATE_CHARACTER,
+  SHOW_CHARACTER_EDIT,
+  CLOSE_CHARACTER_EDIT } from './actionTypes'
 import db from './db'
 
 export function loadGames() {
@@ -78,6 +81,19 @@ export function deleteCharacter(id) {
   }
 }
 
+export function updateCharacter(id, newCharacter) {
+  return (dispatch) => {
+    db.table('characters')
+      .update(id, { newCharacter })
+      .then(() => {
+        dispatch({
+          type: UPDATE_CHARACTER,
+          payload: { id, newCharacter }
+        })
+      })
+  }
+}
+
 export function createGame(name) {
   return (dispatch) => {
     const gameToAdd = { name }
@@ -106,6 +122,14 @@ export function toggleDrawer(drawerOpen) {
 
 export function showGamePage(newGamePage) {
   return { type: SHOW_GAME_PAGE, payload: newGamePage }
+}
+
+export function showCharacterEditModal(id) {
+  return { type: SHOW_CHARACTER_EDIT, payload: id }
+}
+
+export function closeCharacterEditModal() {
+  return { type: CLOSE_CHARACTER_EDIT }
 }
 
 export function openSettings() {

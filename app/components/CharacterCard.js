@@ -6,6 +6,7 @@ import CardActionArea from '@material-ui/core/CardActionArea'
 import Typography from '@material-ui/core/Typography'
 import Stat from './Stat'
 import DeleteButton from './DeleteButton'
+import EditButton from './EditButton'
 import Grid from '@material-ui/core/Grid'
 
 const styles = {
@@ -19,7 +20,7 @@ const styles = {
   }
 }
 
-const CharacterCard = ({ character, deleteCharacter, classes }) => (
+const CharacterCard = ({ character, deleteCharacter, showCharacterEditModal, classes }) => (
   <Card className={classes.card}>
     <Grid container spacing={16}>
       <Grid item>
@@ -37,6 +38,7 @@ const CharacterCard = ({ character, deleteCharacter, classes }) => (
       </Grid>
       <Grid item>
         <DeleteButton deleteAction={ () => deleteCharacter(character.id) }/>
+        <EditButton editAction={ () => showCharacterEditModal(character.id) }/>
       </Grid>
     </Grid>
   </Card>
@@ -45,6 +47,7 @@ const CharacterCard = ({ character, deleteCharacter, classes }) => (
 CharacterCard.propTypes = {
   character: PropTypes.object,
   deleteCharacter: PropTypes.func,
+  showCharacterEditModal: PropTypes.func,
   classes: PropTypes.object
 }
 

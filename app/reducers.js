@@ -9,7 +9,10 @@ import {
   DELETE_GAME,
   LOAD_CHARACTERS,
   OPEN_SETTINGS,
-  DELETE_CHARACTER } from './actionTypes'
+  DELETE_CHARACTER,
+  UPDATE_CHARACTER,
+  SHOW_CHARACTER_EDIT,
+  CLOSE_CHARACTER_EDIT } from './actionTypes'
 import { combineReducers } from 'redux'
 
 export const GAME_PAGE_CHARACTERS = 'characters'
@@ -22,7 +25,8 @@ export const initialState = {
     drawerOpen: false,
     selectedGameId: null,
     gamePage: GAME_PAGE_CHARACTERS,
-    settingsOpen: false
+    settingsOpen: false,
+    selectedCharacterId: null
   }
 }
 
@@ -38,6 +42,10 @@ function ui(state = initialState.ui, action) {
       return { ...state, gamePage: action.payload, settingsOpen: false }
     case OPEN_SETTINGS:
       return { ...state, settingsOpen: true }
+    case SHOW_CHARACTER_EDIT:
+      return { ...state, selectedCharacterId: action.payload }
+    case CLOSE_CHARACTER_EDIT:
+      return { ...state, selectedCharacterId: null }
     default:
       return state
   }
@@ -62,6 +70,13 @@ function characters(state = initialState.characters, action) {
       return [...state, action.payload]
     case DELETE_CHARACTER:
       return state = state.filter((character) => character.id !== action.payload)
+    case UPDATE_CHARACTER: {
+      const characterToUpdate = state.find((character) => character.id === action.payload.id)
+      return [
+        ...state.filter((character) => character.id !== action.payload.id),
+        Object.assign({}, characterToUpdate, action.payload.newCharacter)
+      ]
+    }
     case LOAD_CHARACTERS:
       return state = action.payload
     default:

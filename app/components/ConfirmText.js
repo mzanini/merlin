@@ -46,7 +46,7 @@ class ConfirmText extends Component {
 }
 
 ConfirmText.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.number,
   label: PropTypes.string,
   buttonText: PropTypes.string,
   handleConfirmAction: PropTypes.func.isRequired

@@ -55,6 +55,12 @@ class CharacterEditModal extends Component {
         open={this.props.isOpen}
         onClose={ () => this.onClose() }
         aria-labelledby="form-dialog-title"
+        onKeyPress={ (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault()
+            this.onClose()
+          }
+        }}
       >
         <DialogTitle id="form-dialog-title">{this.state.character.name}</DialogTitle>
         <DialogContent>

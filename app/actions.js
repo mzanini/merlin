@@ -14,6 +14,7 @@ import {
   SHOW_CHARACTER_EDIT,
   CLOSE_CHARACTER_EDIT } from './actionTypes'
 import db from './db'
+import { rollFourSixSidedDie } from './utils'
 
 export function loadGames() {
   return (dispatch) => {
@@ -56,7 +57,14 @@ export function deleteGame(id) {
 
 export function createCharacter(name, gameId) {
   return (dispatch) => {
-    const characterToAdd = { name, game: gameId }
+    let characterToAdd = { name, game: gameId }
+    characterToAdd.strength = rollFourSixSidedDie()
+    characterToAdd.intelligence = rollFourSixSidedDie()
+    characterToAdd.wisdom = rollFourSixSidedDie()
+    characterToAdd.constitution = rollFourSixSidedDie()
+    characterToAdd.dexterity = rollFourSixSidedDie()
+    characterToAdd.charisma = rollFourSixSidedDie()
+
     db.table('characters')
       .add(characterToAdd)
       .then((id) => {
@@ -84,7 +92,7 @@ export function deleteCharacter(id) {
 export function updateCharacter(id, newCharacter) {
   return (dispatch) => {
     db.table('characters')
-      .update(id, { newCharacter })
+      .update(id, newCharacter)
       .then(() => {
         dispatch({
           type: UPDATE_CHARACTER,

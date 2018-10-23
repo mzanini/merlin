@@ -3,8 +3,17 @@ import CharacterList from '../components/CharacterList'
 import { deleteCharacter, showCharacterEditModal } from '../actions'
 
 const mapStateToProps = state => {
+  let sortAlphabetically = (a, b) => {
+    if (a.name < b.name)
+      return -1
+    if (a.name > b.name)
+      return 1
+
+    return 0
+  }
+
   return {
-    characters: state.characters,
+    characters: state.characters.sort(sortAlphabetically),
     filter: (character) => (character.game === state.ui.selectedGameId)
   }
 }

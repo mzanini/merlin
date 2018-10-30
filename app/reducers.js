@@ -12,7 +12,8 @@ import {
   DELETE_CHARACTER,
   UPDATE_CHARACTER,
   SHOW_CHARACTER_EDIT,
-  CLOSE_CHARACTER_EDIT } from './actionTypes'
+  CLOSE_CHARACTER_EDIT,
+  CREATE_RACE } from './actionTypes'
 import { combineReducers } from 'redux'
 
 export const GAME_PAGE_CHARACTERS = 'characters'
@@ -21,13 +22,14 @@ export const GAME_PAGE_ROLL = 'roll'
 export const initialState = {
   games: [],
   characters: [],
+  races: [],
   ui: {
     drawerOpen: false,
     selectedGameId: null,
     gamePage: GAME_PAGE_CHARACTERS,
     settingsOpen: false,
-    selectedCharacterId: null
-  }
+    selectedCharacterId: null,
+  },
 }
 
 function ui(state = initialState.ui, action) {
@@ -74,7 +76,7 @@ function characters(state = initialState.characters, action) {
       const characterToUpdate = state.find((character) => character.id === action.payload.id)
       return [
         ...state.filter((character) => character.id !== action.payload.id),
-        Object.assign({}, characterToUpdate, action.payload.newCharacter)
+        Object.assign({}, characterToUpdate, action.payload.newCharacter),
       ]
     }
     case LOAD_CHARACTERS:
@@ -84,10 +86,20 @@ function characters(state = initialState.characters, action) {
   }
 }
 
+function races(state = initialState.races, action) {
+  switch (action.type) {
+    case CREATE_RACE:
+      return [...state, action.payload]
+    default:
+      return state
+  }
+}
+
 const myReducer = combineReducers({
   ui,
   games,
-  characters
+  characters,
+  races,
 })
 
 export default myReducer

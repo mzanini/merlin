@@ -16,3 +16,5 @@ export const LOAD_GAMES = 'LOAD_GAMES'
 export const LOAD_CHARACTERS = 'LOAD_CHARACTERS'
 
 export const OPEN_SETTINGS = 'OPEN_SETTINGS'
+
+export const CREATE_RACE = 'CREATE_RACE'

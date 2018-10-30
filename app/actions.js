@@ -12,7 +12,8 @@ import {
   DELETE_CHARACTER,
   UPDATE_CHARACTER,
   SHOW_CHARACTER_EDIT,
-  CLOSE_CHARACTER_EDIT } from './actionTypes'
+  CLOSE_CHARACTER_EDIT,
+  CREATE_RACE } from './actionTypes'
 import db from './db'
 import { rollFourSixSidedDie } from './utils'
 
@@ -23,7 +24,7 @@ export function loadGames() {
       .then((games) => {
         dispatch({
           type: LOAD_GAMES,
-          payload: games
+          payload: games,
         })
       })
   }
@@ -36,7 +37,7 @@ export function loadCharacters() {
       .then((characters) => {
         dispatch({
           type: LOAD_CHARACTERS,
-          payload: characters
+          payload: characters,
         })
       })
   }
@@ -49,7 +50,7 @@ export function deleteGame(id) {
       .then(() => {
         dispatch({
           type: DELETE_GAME,
-          payload: id
+          payload: id,
         })
       })
   }
@@ -70,7 +71,7 @@ export function createCharacter(name, gameId) {
       .then((id) => {
         dispatch({
           type: CREATE_CHARACTER,
-          payload: Object.assign({}, characterToAdd, { id })
+          payload: Object.assign({}, characterToAdd, { id }),
         })
       })
   }
@@ -83,7 +84,7 @@ export function deleteCharacter(id) {
       .then(() => {
         dispatch({
           type: DELETE_CHARACTER,
-          payload: id
+          payload: id,
         })
       })
   }
@@ -96,7 +97,7 @@ export function updateCharacter(id, newCharacter) {
       .then(() => {
         dispatch({
           type: UPDATE_CHARACTER,
-          payload: { id, newCharacter }
+          payload: { id, newCharacter },
         })
       })
   }
@@ -110,7 +111,7 @@ export function createGame(name) {
       .then((id) => {
         dispatch({
           type: CREATE_GAME,
-          payload: Object.assign({}, gameToAdd, { id })
+          payload: Object.assign({}, gameToAdd, { id }),
         })
       })
   }
@@ -142,4 +143,18 @@ export function closeCharacterEditModal() {
 
 export function openSettings() {
   return { type: OPEN_SETTINGS }
+}
+
+export function createRace(name, probability) {
+  return (dispatch) => {
+    let raceToAdd = { name, probability }
+    db.table('races')
+      .add(raceToAdd)
+      .then((id) => {
+        dispatch({
+          type: CREATE_RACE,
+          payload: Object.assign({}, raceToAdd, { id }),
+        })
+      })
+  }
 }

@@ -5,8 +5,9 @@
     "plugin:react/recommended"
   ],
   "rules": {
-    "curly": [2, "multi-or-nest"],
+    "curly": [2, "multi-line"],
     "space-before-function-paren": ["error", {"anonymous": "always", "named": "never", "asyncArrow": "always"}],
-    "no-return-assign": "off"
+    "no-return-assign": "off",
+    "comma-dangle": ["error", "always-multiline"]
   }
 }

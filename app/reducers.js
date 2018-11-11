@@ -13,7 +13,8 @@ import {
   UPDATE_CHARACTER,
   SHOW_CHARACTER_EDIT,
   CLOSE_CHARACTER_EDIT,
-  INITIALIZE_RACES } from './actionTypes'
+  INITIALIZE_RACES,
+  INITIALIZE_SOCIAL_CLASSES } from './actionTypes'
 import { combineReducers } from 'redux'
 
 export const GAME_PAGE_CHARACTERS = 'characters'
@@ -26,13 +27,16 @@ export const initialState = {
     table: [],
     tablePath: '',
   },
+  socialClasses: {
+    table: [],
+    tablePath: '',
+  },
   ui: {
     drawerOpen: false,
     selectedGameId: null,
     gamePage: GAME_PAGE_CHARACTERS,
     settingsOpen: false,
     selectedCharacterId: null,
-    selectingTables: false,
   },
 }
 
@@ -99,11 +103,21 @@ function races(state = initialState.races, action) {
   }
 }
 
+function socialClasses(state = initialState.socialClasses, action) {
+  switch (action.type) {
+    case INITIALIZE_SOCIAL_CLASSES:
+      return { ...state, table: action.payload.table, tablePath: action.payload.tablePath }
+    default:
+      return state
+  }
+}
+
 const myReducer = combineReducers({
   ui,
   games,
   characters,
   races,
+  socialClasses,
 })
 
 export default myReducer

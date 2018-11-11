@@ -14,7 +14,8 @@ import {
   SHOW_CHARACTER_EDIT,
   CLOSE_CHARACTER_EDIT,
   CREATE_RACE,
-  INITIALIZE_RACES } from './actionTypes'
+  INITIALIZE_RACES,
+  INITIALIZE_SOCIAL_CLASSES } from './actionTypes'
 import db from './db'
 import fs from 'fs'
 import { rollFourSixSidedDie } from './utils'
@@ -173,4 +174,18 @@ export function createRace(name, probability) {
         })
       })
   }
+}
+
+export function loadSocialClassesTable(fileName) {
+  if (typeof (fileName) !== 'string') {
+    return
+  }
+
+  console.log('Social classes table selected: ' + fileName)
+  const payload = {
+    table: JSON.parse(fs.readFileSync(fileName)),
+    tablePath: fileName,
+  }
+  console.log(payload.table)
+  return { type: INITIALIZE_SOCIAL_CLASSES, payload: payload }
 }

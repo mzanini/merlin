@@ -4,6 +4,8 @@ import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
 import SelectRacesTableStep from './SelectRacesTableStep'
+import Button from '@material-ui/core/Button'
+import SelectSocialClassesTableStep from './SelectSocialClassesTableStep'
 
 class SetupStepper extends React.Component {
   constructor() {
@@ -35,6 +37,7 @@ class SetupStepper extends React.Component {
 
   render() {
     const { activeStep } = this.state
+    const currentStep = activeStep === 0 ? <SelectRacesTableStep/> : <SelectSocialClassesTableStep/>
 
     return (
       <React.Fragment>
@@ -47,7 +50,19 @@ class SetupStepper extends React.Component {
             )
           })}
         </Stepper>
-        <SelectRacesTableStep/>
+        {currentStep}
+        <Button
+          disabled={activeStep === 0}
+          onClick={this.handleBack}
+        >
+          Back
+        </Button>
+        <Button
+          disabled={activeStep === this.props.steps.length - 1}
+          onClick={this.handleNext}
+        >
+          Next
+        </Button>
       </React.Fragment>
     )
   }

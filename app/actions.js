@@ -13,8 +13,10 @@ import {
   UPDATE_CHARACTER,
   SHOW_CHARACTER_EDIT,
   CLOSE_CHARACTER_EDIT,
-  CREATE_RACE } from './actionTypes'
+  CREATE_RACE,
+  INITIALIZE_RACES } from './actionTypes'
 import db from './db'
+import fs from 'fs'
 import { rollFourSixSidedDie } from './utils'
 
 export function loadGames() {
@@ -143,6 +145,20 @@ export function closeCharacterEditModal() {
 
 export function openSettings() {
   return { type: OPEN_SETTINGS }
+}
+
+export function loadRacesTable(fileName) {
+  if (typeof (fileName) !== 'string') {
+    return
+  }
+
+  console.log('Races table selected: ' + fileName)
+  const payload = {
+    table: JSON.parse(fs.readFileSync(fileName)),
+    tablePath: fileName,
+  }
+  console.log(payload.table)
+  return { type: INITIALIZE_RACES, payload: payload }
 }
 
 export function createRace(name, probability) {

@@ -1,8 +1,8 @@
 import React from 'react'
-import TablesSelector from './tables-selector'
+import TablesSetup from '../containers/TablesSetup'
 
 const Settings = () => (
-  <TablesSelector/>
+  <TablesSetup/>
 )
 
 export default Settings

@@ -1,11 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
-
-function getSteps() {
-  return ['Load races', 'Load social classes', 'Load minor abilities']
-}
+import SelectRacesTableStep from './SelectRacesTableStep'
 
 class SetupStepper extends React.Component {
   constructor() {
@@ -18,15 +16,8 @@ class SetupStepper extends React.Component {
   }
 
   handleNext() {
-    const { activeStep } = this.state
-    let { skipped } = this.state
-    if (this.isStepSkipped(activeStep)) {
-      skipped = new Set(skipped.values())
-      skipped.delete(activeStep)
-    }
     this.setState({
-      activeStep: activeStep + 1,
-      skipped,
+      activeStep: this.state.activeStep + 1,
     })
   }
 
@@ -43,21 +34,27 @@ class SetupStepper extends React.Component {
   }
 
   render() {
-    const steps = getSteps()
     const { activeStep } = this.state
 
     return (
-      <Stepper activeStep={activeStep}>
-        {steps.map((label) => {
-          return (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          )
-        })}
-      </Stepper>
+      <React.Fragment>
+        <Stepper activeStep={activeStep}>
+          {this.props.steps.map((label) => {
+            return (
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+              </Step>
+            )
+          })}
+        </Stepper>
+        <SelectRacesTableStep/>
+      </React.Fragment>
     )
   }
 }
 
 export default SetupStepper
+
+SetupStepper.propTypes = {
+  steps: PropTypes.array,
+}

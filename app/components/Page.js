@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import ActiveGamePage from '../containers/ActiveGamePage'
 import GamesPage from './GamesPage'
 import Settings from './Settings'
-import SetupStepper from './SetupStepper'
+import TablesSetup from '../containers/TablesSetup'
 
 const Page = ({ selectedGameId, settingsOpen, setupCompleted }) => {
   if (setupCompleted) {
@@ -15,7 +15,7 @@ const Page = ({ selectedGameId, settingsOpen, setupCompleted }) => {
       return <GamesPage/>
     }
   } else {
-    return <SetupStepper/>
+    return <TablesSetup/>
   }
 }
 

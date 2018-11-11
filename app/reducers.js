@@ -13,7 +13,7 @@ import {
   UPDATE_CHARACTER,
   SHOW_CHARACTER_EDIT,
   CLOSE_CHARACTER_EDIT,
-  CREATE_RACE } from './actionTypes'
+  INITIALIZE_RACES } from './actionTypes'
 import { combineReducers } from 'redux'
 
 export const GAME_PAGE_CHARACTERS = 'characters'
@@ -22,13 +22,17 @@ export const GAME_PAGE_ROLL = 'roll'
 export const initialState = {
   games: [],
   characters: [],
-  races: [],
+  races: {
+    table: [],
+    tablePath: '',
+  },
   ui: {
     drawerOpen: false,
     selectedGameId: null,
     gamePage: GAME_PAGE_CHARACTERS,
     settingsOpen: false,
     selectedCharacterId: null,
+    selectingTables: false,
   },
 }
 
@@ -88,8 +92,8 @@ function characters(state = initialState.characters, action) {
 
 function races(state = initialState.races, action) {
   switch (action.type) {
-    case CREATE_RACE:
-      return [...state, action.payload]
+    case INITIALIZE_RACES:
+      return { ...state, table: action.payload.table, tablePath: action.payload.tablePath }
     default:
       return state
   }

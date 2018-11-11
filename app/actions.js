@@ -15,10 +15,21 @@ import {
   CLOSE_CHARACTER_EDIT,
   CREATE_RACE,
   INITIALIZE_RACES,
-  INITIALIZE_SOCIAL_CLASSES } from './actionTypes'
+  INITIALIZE_SOCIAL_CLASSES,
+  INITIALIZE_MINOR_ABILITIES } from './actionTypes'
 import db from './db'
 import fs from 'fs'
 import { rollFourSixSidedDie } from './utils'
+
+function loadTable(fileName) {
+  console.log('table selected: ' + fileName)
+  const payload = {
+    table: JSON.parse(fs.readFileSync(fileName)),
+    tablePath: fileName,
+  }
+  console.log(payload.table)
+  return payload
+}
 
 export function loadGames() {
   return (dispatch) => {
@@ -153,13 +164,7 @@ export function loadRacesTable(fileName) {
     return
   }
 
-  console.log('Races table selected: ' + fileName)
-  const payload = {
-    table: JSON.parse(fs.readFileSync(fileName)),
-    tablePath: fileName,
-  }
-  console.log(payload.table)
-  return { type: INITIALIZE_RACES, payload: payload }
+  return { type: INITIALIZE_RACES, payload: loadTable(fileName) }
 }
 
 export function createRace(name, probability) {
@@ -181,11 +186,13 @@ export function loadSocialClassesTable(fileName) {
     return
   }
 
-  console.log('Social classes table selected: ' + fileName)
-  const payload = {
-    table: JSON.parse(fs.readFileSync(fileName)),
-    tablePath: fileName,
+  return { type: INITIALIZE_SOCIAL_CLASSES, payload: loadTable(fileName) }
+}
+
+export function loadMinorAbilitiesTable(fileName) {
+  if (typeof (fileName) !== 'string') {
+    return
   }
-  console.log(payload.table)
-  return { type: INITIALIZE_SOCIAL_CLASSES, payload: payload }
+
+  return { type: INITIALIZE_MINOR_ABILITIES, payload: loadTable(fileName) }
 }

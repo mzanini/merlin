@@ -6,6 +6,7 @@ import StepLabel from '@material-ui/core/StepLabel'
 import SelectRacesTableStep from './SelectRacesTableStep'
 import Button from '@material-ui/core/Button'
 import SelectSocialClassesTableStep from './SelectSocialClassesTableStep'
+import SelectMinorAbilitiesTableStep from './SelectMinorAbilitiesTableStep'
 
 class SetupStepper extends React.Component {
   constructor() {
@@ -37,7 +38,10 @@ class SetupStepper extends React.Component {
 
   render() {
     const { activeStep } = this.state
-    const currentStep = activeStep === 0 ? <SelectRacesTableStep/> : <SelectSocialClassesTableStep/>
+    let currentStep = <SelectRacesTableStep/>
+    if (activeStep !== 0) {
+      currentStep = activeStep === 1 ? <SelectSocialClassesTableStep/> : <SelectMinorAbilitiesTableStep/>
+    }
 
     return (
       <React.Fragment>

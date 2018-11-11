@@ -14,7 +14,7 @@ import {
   SHOW_CHARACTER_EDIT,
   CLOSE_CHARACTER_EDIT,
   CREATE_RACE,
-  INITIALIZE_RACES,
+  SET_RACES_TABLE_PATH,
   INITIALIZE_SOCIAL_CLASSES,
   INITIALIZE_MINOR_ABILITIES } from './actionTypes'
 import db from './db'
@@ -163,8 +163,14 @@ export function loadRacesTable(fileName) {
   if (typeof (fileName) !== 'string') {
     return
   }
-
-  return { type: INITIALIZE_RACES, payload: loadTable(fileName) }
+  return (dispatch) => {
+    const payload = loadTable(fileName)
+    payload.table.forEach((row) => {
+      console.log(row)
+      dispatch(createRace(row.name, row.probability))
+    })
+    dispatch(setRacesTablePath(fileName))
+  }
 }
 
 export function createRace(name, probability) {
@@ -179,6 +185,10 @@ export function createRace(name, probability) {
         })
       })
   }
+}
+
+export function setRacesTablePath(fileName) {
+  return { type: SET_RACES_TABLE_PATH, payload: fileName }
 }
 
 export function loadSocialClassesTable(fileName) {

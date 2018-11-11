@@ -4,7 +4,7 @@ import { loadRacesTable } from '../actions'
 
 const mapStateToProps = state => {
   return {
-    fileName: state.races.tablePath,
+    fileName: state.ui.racesTablePath,
   }
 }
 

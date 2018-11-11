@@ -13,9 +13,10 @@ import {
   UPDATE_CHARACTER,
   SHOW_CHARACTER_EDIT,
   CLOSE_CHARACTER_EDIT,
-  INITIALIZE_RACES,
   INITIALIZE_SOCIAL_CLASSES,
-  INITIALIZE_MINOR_ABILITIES } from './actionTypes'
+  INITIALIZE_MINOR_ABILITIES,
+  CREATE_RACE,
+  SET_RACES_TABLE_PATH } from './actionTypes'
 import { combineReducers } from 'redux'
 
 export const GAME_PAGE_CHARACTERS = 'characters'
@@ -24,10 +25,7 @@ export const GAME_PAGE_ROLL = 'roll'
 export const initialState = {
   games: [],
   characters: [],
-  races: {
-    table: [],
-    tablePath: '',
-  },
+  races: [],
   socialClasses: {
     table: [],
     tablePath: '',
@@ -42,6 +40,7 @@ export const initialState = {
     gamePage: GAME_PAGE_CHARACTERS,
     settingsOpen: false,
     selectedCharacterId: null,
+    racesTablePath: '',
   },
 }
 
@@ -61,6 +60,8 @@ function ui(state = initialState.ui, action) {
       return { ...state, selectedCharacterId: action.payload }
     case CLOSE_CHARACTER_EDIT:
       return { ...state, selectedCharacterId: null }
+    case SET_RACES_TABLE_PATH:
+      return { ...state, racesTablePath: action.payload }
     default:
       return state
   }
@@ -101,8 +102,8 @@ function characters(state = initialState.characters, action) {
 
 function races(state = initialState.races, action) {
   switch (action.type) {
-    case INITIALIZE_RACES:
-      return { ...state, table: action.payload.table, tablePath: action.payload.tablePath }
+    case CREATE_RACE:
+      return [...state, action.payload]
     default:
       return state
   }

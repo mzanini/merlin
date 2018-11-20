@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
-import SelectRacesTableStep from './SelectRacesTableStep'
+import SelectRacesTableStep from '../containers/SelectRacesTableStep'
 import Button from '@material-ui/core/Button'
-import SelectSocialClassesTableStep from './SelectSocialClassesTableStep'
-import SelectMinorAbilitiesTableStep from './SelectMinorAbilitiesTableStep'
+import SelectSocialClassesTableStep from '../containers/SelectSocialClassesTableStep'
+import SelectMinorAbilitiesTableStep from '../containers/SelectMinorAbilitiesTableStep'
 
 class SetupStepper extends React.Component {
   constructor() {

@@ -6,12 +6,12 @@ import { Provider } from 'react-redux'
 import AppPage from './containers/AppPage'
 import MainPageHeader from './containers/MainPageHeader'
 import store from './store'
-import { loadGames, loadCharacters } from './actions'
+import { loadGames, loadCharacters, loadRaces, loadSocialClasses, loadMinorAbilities } from './actions'
 import { MuiThemeProvider } from '@material-ui/core/styles'
 import { theme } from './theme'
 
 const Application = () => {
-  return(
+  return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <MainPageHeader/>
@@ -22,6 +22,8 @@ const Application = () => {
 
 store.dispatch(loadGames())
 store.dispatch(loadCharacters())
+store.dispatch(loadRaces())
+store.dispatch(loadSocialClasses())
+store.dispatch(loadMinorAbilities())
 
 ReactDOM.render(<Provider store={store}><Application/></Provider>, document.querySelector('#app'))
-

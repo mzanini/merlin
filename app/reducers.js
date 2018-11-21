@@ -18,7 +18,10 @@ import {
   CREATE_SOCIAL_CLASS,
   CREATE_MINOR_ABILITY,
   SET_SOCIAL_CLASSES_TABLE_PATH,
-  SET_MINOR_ABILITIES_TABLE_PATH } from './actionTypes'
+  SET_MINOR_ABILITIES_TABLE_PATH,
+  LOAD_RACES,
+  LOAD_SOCIAL_CLASSES,
+  LOAD_MINOR_ABILITIES } from './actionTypes'
 import { combineReducers } from 'redux'
 
 export const GAME_PAGE_CHARACTERS = 'characters'
@@ -104,6 +107,8 @@ function characters(state = initialState.characters, action) {
 
 function races(state = initialState.races, action) {
   switch (action.type) {
+    case LOAD_RACES:
+      return state = action.payload
     case CREATE_RACE:
       return [...state, action.payload]
     default:
@@ -113,6 +118,8 @@ function races(state = initialState.races, action) {
 
 function socialClasses(state = initialState.socialClasses, action) {
   switch (action.type) {
+    case LOAD_SOCIAL_CLASSES:
+      return state = action.payload
     case CREATE_SOCIAL_CLASS:
       return [...state, action.payload]
     default:
@@ -122,6 +129,8 @@ function socialClasses(state = initialState.socialClasses, action) {
 
 function minorAbilities(state = initialState.minorAbilities, action) {
   switch (action.type) {
+    case LOAD_MINOR_ABILITIES:
+      return state = action.payload
     case CREATE_MINOR_ABILITY:
       return [...state, action.payload]
     default:

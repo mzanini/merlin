@@ -18,7 +18,10 @@ import {
   CREATE_SOCIAL_CLASS,
   SET_SOCIAL_CLASSES_TABLE_PATH,
   CREATE_MINOR_ABILITY,
-  SET_MINOR_ABILITIES_TABLE_PATH } from './actionTypes'
+  SET_MINOR_ABILITIES_TABLE_PATH,
+  LOAD_RACES,
+  LOAD_SOCIAL_CLASSES,
+  LOAD_MINOR_ABILITIES } from './actionTypes'
 import db from './db'
 import fs from 'fs'
 import { rollFourSixSidedDie } from './utils'
@@ -161,6 +164,19 @@ export function openSettings() {
   return { type: OPEN_SETTINGS }
 }
 
+export function loadRaces() {
+  return (dispatch) => {
+    db.table('races')
+      .toArray()
+      .then((races) => {
+        dispatch({
+          type: LOAD_RACES,
+          payload: races,
+        })
+      })
+  }
+}
+
 export function loadRacesTable(fileName) {
   if (typeof (fileName) !== 'string') {
     return
@@ -191,6 +207,19 @@ export function createRace(name, probability) {
 
 export function setRacesTablePath(fileName) {
   return { type: SET_RACES_TABLE_PATH, payload: fileName }
+}
+
+export function loadSocialClasses() {
+  return (dispatch) => {
+    db.table('socialClasses')
+      .toArray()
+      .then((socialClasses) => {
+        dispatch({
+          type: LOAD_SOCIAL_CLASSES,
+          payload: socialClasses,
+        })
+      })
+  }
 }
 
 export function createSocialClass(raceName, name, probability) {
@@ -226,6 +255,19 @@ export function loadSocialClassesTable(fileName) {
 
 export function setSocialClassesTablePath(fileName) {
   return { type: SET_SOCIAL_CLASSES_TABLE_PATH, payload: fileName }
+}
+
+export function loadMinorAbilities() {
+  return (dispatch) => {
+    db.table('minorAbilities')
+      .toArray()
+      .then((minorAbilities) => {
+        dispatch({
+          type: LOAD_MINOR_ABILITIES,
+          payload: minorAbilities,
+        })
+      })
+  }
 }
 
 export function createMinorAbility(chart, probability, name, number) {

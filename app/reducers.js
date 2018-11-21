@@ -13,10 +13,12 @@ import {
   UPDATE_CHARACTER,
   SHOW_CHARACTER_EDIT,
   CLOSE_CHARACTER_EDIT,
-  INITIALIZE_SOCIAL_CLASSES,
-  INITIALIZE_MINOR_ABILITIES,
   CREATE_RACE,
-  SET_RACES_TABLE_PATH } from './actionTypes'
+  SET_RACES_TABLE_PATH,
+  CREATE_SOCIAL_CLASS,
+  CREATE_MINOR_ABILITY,
+  SET_SOCIAL_CLASSES_TABLE_PATH,
+  SET_MINOR_ABILITIES_TABLE_PATH } from './actionTypes'
 import { combineReducers } from 'redux'
 
 export const GAME_PAGE_CHARACTERS = 'characters'
@@ -26,14 +28,8 @@ export const initialState = {
   games: [],
   characters: [],
   races: [],
-  socialClasses: {
-    table: [],
-    tablePath: '',
-  },
-  minorAbilities: {
-    table: [],
-    tablePath: '',
-  },
+  socialClasses: [],
+  minorAbilities: [],
   ui: {
     drawerOpen: false,
     selectedGameId: null,
@@ -41,6 +37,8 @@ export const initialState = {
     settingsOpen: false,
     selectedCharacterId: null,
     racesTablePath: '',
+    socialClassesTablePath: '',
+    minorAbilitiesTablePath: '',
   },
 }
 
@@ -62,6 +60,10 @@ function ui(state = initialState.ui, action) {
       return { ...state, selectedCharacterId: null }
     case SET_RACES_TABLE_PATH:
       return { ...state, racesTablePath: action.payload }
+    case SET_SOCIAL_CLASSES_TABLE_PATH:
+      return { ...state, socialClassesTablePath: action.payload }
+    case SET_MINOR_ABILITIES_TABLE_PATH:
+      return { ...state, minorAbilitiesTablePath: action.payload }
     default:
       return state
   }
@@ -111,8 +113,8 @@ function races(state = initialState.races, action) {
 
 function socialClasses(state = initialState.socialClasses, action) {
   switch (action.type) {
-    case INITIALIZE_SOCIAL_CLASSES:
-      return { ...state, table: action.payload.table, tablePath: action.payload.tablePath }
+    case CREATE_SOCIAL_CLASS:
+      return [...state, action.payload]
     default:
       return state
   }
@@ -120,8 +122,8 @@ function socialClasses(state = initialState.socialClasses, action) {
 
 function minorAbilities(state = initialState.minorAbilities, action) {
   switch (action.type) {
-    case INITIALIZE_MINOR_ABILITIES:
-      return { ...state, table: action.payload.table, tablePath: action.payload.tablePath }
+    case CREATE_MINOR_ABILITY:
+      return [...state, action.payload]
     default:
       return state
   }

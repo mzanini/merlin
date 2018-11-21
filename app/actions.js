@@ -15,8 +15,10 @@ import {
   CLOSE_CHARACTER_EDIT,
   CREATE_RACE,
   SET_RACES_TABLE_PATH,
-  INITIALIZE_SOCIAL_CLASSES,
-  INITIALIZE_MINOR_ABILITIES } from './actionTypes'
+  CREATE_SOCIAL_CLASS,
+  SET_SOCIAL_CLASSES_TABLE_PATH,
+  CREATE_MINOR_ABILITY,
+  SET_MINOR_ABILITIES_TABLE_PATH } from './actionTypes'
 import db from './db'
 import fs from 'fs'
 import { rollFourSixSidedDie } from './utils'
@@ -191,18 +193,72 @@ export function setRacesTablePath(fileName) {
   return { type: SET_RACES_TABLE_PATH, payload: fileName }
 }
 
+export function createSocialClass(raceName, name, probability) {
+  return (dispatch) => {
+    let socialClassToAdd = { raceName, name, probability }
+    db.table('socialClasses')
+      .add(socialClassToAdd)
+      .then((id) => {
+        dispatch({
+          type: CREATE_SOCIAL_CLASS,
+          payload: Object.assign({}, socialClassToAdd, { id }),
+        })
+      })
+  }
+}
+
 export function loadSocialClassesTable(fileName) {
   if (typeof (fileName) !== 'string') {
     return
   }
+  return (dispatch) => {
+    const payload = loadTable(fileName)
+    payload.table.forEach((row) => {
+      console.log(row)
+      row.probabilities.forEach((socialClass) => {
+        console.log(socialClass)
+        dispatch(createSocialClass(row.race, socialClass.name, socialClass.probability))
+      })
+    })
+    dispatch(setSocialClassesTablePath(fileName))
+  }
+}
 
-  return { type: INITIALIZE_SOCIAL_CLASSES, payload: loadTable(fileName) }
+export function setSocialClassesTablePath(fileName) {
+  return { type: SET_SOCIAL_CLASSES_TABLE_PATH, payload: fileName }
+}
+
+export function createMinorAbility(chart, probability, name, number) {
+  return (dispatch) => {
+    let minorAbilityToAdd = { chart, probability, name, number }
+    db.table('minorAbilities')
+      .add(minorAbilityToAdd)
+      .then((id) => {
+        dispatch({
+          type: CREATE_MINOR_ABILITY,
+          payload: Object.assign({}, minorAbilityToAdd, { id }),
+        })
+      })
+  }
 }
 
 export function loadMinorAbilitiesTable(fileName) {
   if (typeof (fileName) !== 'string') {
     return
   }
+  return (dispatch) => {
+    const payload = loadTable(fileName)
+    payload.table.forEach((row) => {
+      console.log(row)
+      row.abilities.forEach((ability) => {
+        console.log(ability)
+        dispatch(createMinorAbility(row.chart, row.probability, ability.name, ability.number))
+      })
+    })
+    dispatch(setMinorAbilitiesTablePath(fileName))
+  }
+}
 
-  return { type: INITIALIZE_MINOR_ABILITIES, payload: loadTable(fileName) }
+export function setMinorAbilitiesTablePath(fileName) {
+  return { type: SET_MINOR_ABILITIES_TABLE_PATH, payload: fileName }
 }

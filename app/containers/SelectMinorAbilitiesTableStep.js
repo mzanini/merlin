@@ -1,5 +1,5 @@
 import React from 'react'
-import MinorAbilitiesTableSelector from './SocialClassesTableSelector'
+import MinorAbilitiesTableSelector from './MinorAbilitiesTableSelector'
 import TableSelectStep from '../components/TableSelectStep'
 
 const SelectMinorAbilitiesTableStep = () => (

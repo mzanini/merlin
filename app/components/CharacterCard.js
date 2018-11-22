@@ -6,25 +6,24 @@ import CardActionArea from '@material-ui/core/CardActionArea'
 import Typography from '@material-ui/core/Typography'
 import Stat from './Stat'
 import DeleteButton from './DeleteButton'
-import EditButton from './EditButton'
 import Grid from '@material-ui/core/Grid'
 
 const styles = {
   card: {
     display: 'block',
     margin: 12,
-    minHeight: 15
+    minHeight: 15,
   },
   table: {
-    padding: '1px 1px 1px 1px'
-  }
+    padding: '1px 1px 1px 1px',
+  },
 }
 
 const CharacterCard = ({ character, deleteCharacter, showCharacterEditModal, classes }) => (
   <Card className={classes.card}>
     <Grid container spacing={16}>
       <Grid item>
-        <CardActionArea>
+        <CardActionArea onClick={ () => showCharacterEditModal(character.id) }>
           <Typography variant="headline">
             {character.name}
           </Typography>
@@ -38,7 +37,6 @@ const CharacterCard = ({ character, deleteCharacter, showCharacterEditModal, cla
       </Grid>
       <Grid item>
         <DeleteButton deleteAction={ () => deleteCharacter(character.id) }/>
-        <EditButton editAction={ () => showCharacterEditModal(character.id) }/>
       </Grid>
     </Grid>
   </Card>
@@ -48,7 +46,7 @@ CharacterCard.propTypes = {
   character: PropTypes.object,
   deleteCharacter: PropTypes.func,
   showCharacterEditModal: PropTypes.func,
-  classes: PropTypes.object
+  classes: PropTypes.object,
 }
 
 export default withStyles(styles)(CharacterCard)

@@ -8,6 +8,7 @@ import EditStat from './EditStat'
 import Button from '@material-ui/core/Button'
 import CachedIcon from '@material-ui/icons/Cached'
 import { rollFourSixSidedDie } from '../utils.js'
+import RaceSelect from '../containers/RaceSelect'
 
 class CharacterEditModal extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class CharacterEditModal extends Component {
     this.onStatChange = this.onStatChange.bind(this)
     this.onClose = this.onClose.bind(this)
     this.rollStats = this.rollStats.bind(this)
+    this.onRaceChange = this.onRaceChange.bind(this)
   }
 
   onStatChange(event, label) {
@@ -47,6 +49,12 @@ class CharacterEditModal extends Component {
     this.setState({ character: currentCharacter })
   }
 
+  onRaceChange(event) {
+    let currentCharacter = this.state.character
+    currentCharacter.race = event.value
+    this.setState({ character: currentCharacter })
+  }
+
   rollStats() {
     let currentCharacter = this.state.character
 
@@ -69,7 +77,7 @@ class CharacterEditModal extends Component {
       <Dialog
         open={this.props.isOpen}
         onClose={ () => this.onClose() }
-        aria-labelledby="form-dialog-title"
+        aria-labelledby='form-dialog-title'
         onKeyPress={ (e) => {
           if (e.key === 'Enter') {
             e.preventDefault()
@@ -77,22 +85,23 @@ class CharacterEditModal extends Component {
           }
         }}
       >
-        <DialogTitle id="form-dialog-title">
+        <DialogTitle id='form-dialog-title'>
           {this.state.character.name}
-          <Button onClick={ () => this.rollStats() } color="primary">
+          <Button onClick={ () => this.rollStats() } color='primary'>
             <CachedIcon/>
           </Button>
         </DialogTitle>
         <DialogContent>
-          <EditStat label="Strength" value={this.state.character.strength} onChange={this.onStatChange}/>
-          <EditStat label="Intelligence" value={this.state.character.intelligence} onChange={this.onStatChange}/>
-          <EditStat label="Wisdom" value={this.state.character.wisdom} onChange={this.onStatChange}/>
-          <EditStat label="Constitution" value={this.state.character.constitution} onChange={this.onStatChange}/>
-          <EditStat label="Dexterity" value={this.state.character.dexterity} onChange={this.onStatChange}/>
-          <EditStat label="Charisma" value={this.state.character.charisma} onChange={this.onStatChange}/>
+          <EditStat label='Strength' value={this.state.character.strength} onChange={this.onStatChange}/>
+          <EditStat label='Intelligence' value={this.state.character.intelligence} onChange={this.onStatChange}/>
+          <EditStat label='Wisdom' value={this.state.character.wisdom} onChange={this.onStatChange}/>
+          <EditStat label='Constitution' value={this.state.character.constitution} onChange={this.onStatChange}/>
+          <EditStat label='Dexterity' value={this.state.character.dexterity} onChange={this.onStatChange}/>
+          <EditStat label='Charisma' value={this.state.character.charisma} onChange={this.onStatChange}/>
+          <RaceSelect value={this.state.character.race} onChange={this.onRaceChange}/>
         </DialogContent>
         <DialogActions>
-          <Button onClick={ () => this.onClose() } color="primary">
+          <Button onClick={ () => this.onClose() } color='primary'>
             Done
           </Button>
         </DialogActions>

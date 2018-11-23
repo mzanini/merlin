@@ -6,8 +6,8 @@ import Typography from '@material-ui/core/Typography'
 const styles = {
   root: {
     display: 'inline-block',
-    padding: 5
-  }
+    padding: 5,
+  },
 }
 
 const Stat = ({ name, value, classes }) => (
@@ -23,8 +23,8 @@ const Stat = ({ name, value, classes }) => (
 
 Stat.propTypes = {
   name: PropTypes.string,
-  value: PropTypes.number,
-  classes: PropTypes.object
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  classes: PropTypes.object,
 }
 
 export default withStyles(styles)(Stat)

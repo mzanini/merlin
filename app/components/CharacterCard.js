@@ -33,6 +33,9 @@ const CharacterCard = ({ character, deleteCharacter, showCharacterEditModal, cla
           <Stat name='Constitution' value={character.constitution}/>
           <Stat name='Dexterity' value={character.dexterity}/>
           <Stat name='Charisma' value={character.charisma}/>
+          <br/>
+          <Stat name='Race' value={character.race}/>
+          <Stat name='Social Class' value={character.socialClass}/>
         </CardActionArea>
       </Grid>
       <Grid item>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
@@ -9,6 +10,13 @@ import Button from '@material-ui/core/Button'
 import CachedIcon from '@material-ui/icons/Cached'
 import { rollFourSixSidedDie } from '../utils.js'
 import RaceSelect from '../containers/RaceSelect'
+import SocialClassSelect from '../containers/SocialClassSelect'
+
+const styles = {
+  root: {
+    flexGrow: 1,
+  },
+}
 
 class CharacterEditModal extends Component {
   constructor(props) {
@@ -18,6 +26,7 @@ class CharacterEditModal extends Component {
     this.onClose = this.onClose.bind(this)
     this.rollStats = this.rollStats.bind(this)
     this.onRaceChange = this.onRaceChange.bind(this)
+    this.onSocialClassChange = this.onSocialClassChange.bind(this)
   }
 
   onStatChange(event, label) {
@@ -51,7 +60,13 @@ class CharacterEditModal extends Component {
 
   onRaceChange(event) {
     let currentCharacter = this.state.character
-    currentCharacter.race = event.value
+    currentCharacter.race = event.target.value
+    this.setState({ character: currentCharacter })
+  }
+
+  onSocialClassChange(event) {
+    let currentCharacter = this.state.character
+    currentCharacter.socialClass = event.target.value
     this.setState({ character: currentCharacter })
   }
 
@@ -77,6 +92,7 @@ class CharacterEditModal extends Component {
       <Dialog
         open={this.props.isOpen}
         onClose={ () => this.onClose() }
+        className={this.props.classes.root}
         aria-labelledby='form-dialog-title'
         onKeyPress={ (e) => {
           if (e.key === 'Enter') {
@@ -99,6 +115,7 @@ class CharacterEditModal extends Component {
           <EditStat label='Dexterity' value={this.state.character.dexterity} onChange={this.onStatChange}/>
           <EditStat label='Charisma' value={this.state.character.charisma} onChange={this.onStatChange}/>
           <RaceSelect value={this.state.character.race} onChange={this.onRaceChange}/>
+          <SocialClassSelect value={this.state.character.socialClass} onChange={this.onSocialClassChange}/>
         </DialogContent>
         <DialogActions>
           <Button onClick={ () => this.onClose() } color='primary'>
@@ -115,6 +132,7 @@ CharacterEditModal.propTypes = {
   character: PropTypes.object.isRequired,
   updateCharacter: PropTypes.func.isRequired,
   closeCharacterEditModal: PropTypes.func.isRequired,
+  classes: PropTypes.object,
 }
 
-export default CharacterEditModal
+export default withStyles(styles)(CharacterEditModal)

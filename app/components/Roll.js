@@ -1,13 +1,31 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Radio from '@material-ui/core/Radio'
+import RadioGroup from '@material-ui/core/RadioGroup'
+import TextField from '@material-ui/core/TextField'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import FormControl from '@material-ui/core/FormControl'
+import FormLabel from '@material-ui/core/FormLabel'
+import Button from '@material-ui/core/Button'
+import RollResult from './RollResult'
 
-export default class Roll extends React.Component {
+const styles = {
+  root: {
+    display: 'block',
+    margin: 5,
+  },
+}
+
+class Roll extends React.Component {
   constructor() {
     super()
     this.state = {
       faces: '4',
       adjust: 0,
       count: 1,
-      rolls: []
+      rolls: [],
+      defaultDie: 4,
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -37,44 +55,83 @@ export default class Roll extends React.Component {
 
   rollDie() {
     var newRolls = []
-    for (var i = 0; i < this.state.count; i++)
+    for (var i = 0; i < this.state.count; i++) {
       newRolls.push(Math.floor((Math.random() * this.state.faces) + 1) + this.state.adjust)
+    }
 
-    this.setState({ rolls: newRolls })
+    let currentRolls = this.state.rolls
+    currentRolls.push(newRolls)
+    this.setState({ rolls: currentRolls })
+  }
+
+  removeRolls(index) {
+    if (index > -1) {
+      let newRolls = this.state.rolls.splice(index, 1)
+      this.setState({ rollsß: newRolls })
+    }
   }
 
   render() {
     return (
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-            <form onSubmit={this.handleSubmit}>
-              <div className="form-group">
-                <label>Faces</label>
-                <select className="form-control" value={this.state.faces} onChange={this.handleChangeFaces}>
-                  <option value="4" defaultValue>4</option>
-                  <option value="6">6</option>
-                  <option value="8">8</option>
-                  <option value="10">10</option>
-                  <option value="12">12</option>
-                </select>
-                <label>Adjust</label>
-                <input type="number" className="form-control" value={this.state.adjust} onChange={this.handleChangeDieAdjust}/>
-                <label>Number of</label>
-                <input type="number" className="form-control" name="number_of" value={this.state.count} onChange={this.handleChangeDieCount}/>
-              </div>
-              <input type="submit" className="btn btn-primary" value="Roll"/>
-            </form>
-          </div>
-          <div className="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-            <ul className="list-group list-group-flush result">
-              {
-                this.state.rolls.map((number, index) => { return <li className="list-group-item" key={index}>{number}</li> })
-              }
-            </ul>
-          </div>
+      <React.Fragment>
+        <div className={this.props.classes.root}>
+          <FormControl component='fieldset'>
+            <FormLabel component='legend'>Faces</FormLabel>
+            <RadioGroup
+              aria-label='faces'
+              name='faces'
+              value={this.state.faces}
+              onChange={this.handleChangeFaces}
+            >
+              <FormControlLabel value='4' control={<Radio />} label='4' />
+              <FormControlLabel value='6' control={<Radio />} label='6' />
+              <FormControlLabel value='8' control={<Radio />} label='8' />
+              <FormControlLabel value='10' control={<Radio />} label='10' />
+              <FormControlLabel value='12' control={<Radio />} label='12' />
+            </RadioGroup>
+          </FormControl>
+          <TextField
+            id="adjust"
+            label="Adjust"
+            value={this.state.adjust}
+            onChange={this.handleChangeDieAdjust}
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            margin="normal"
+            variant="outlined"
+          />
+          <TextField
+            id="numberOf"
+            label="Number Of"
+            value={this.state.count}
+            onChange={this.handleChangeDieCount}
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            margin="normal"
+            variant="outlined"
+          />
+          <Button variant="fab" color="primary" aria-label="Roll" onClick={(event) => this.handleSubmit(event)}>
+            Roll
+          </Button>
         </div>
-      </div>
+        {
+          this.state.rolls.length === 0
+            ? null
+            : this.state.rolls.map((singleRoll, index) => {
+              return <RollResult key={index} rolls={singleRoll} onClose={() => this.removeRolls(index)} />
+            })
+        }
+      </React.Fragment>
     )
   }
 }
+
+Roll.propTypes = {
+  classes: PropTypes.object,
+}
+
+export default withStyles(styles)(Roll)

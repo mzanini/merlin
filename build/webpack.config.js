@@ -6,11 +6,11 @@ module.exports = {
   context: path.join(__dirname, '/../app'),
   entry: {
     background: './background.js',
-    app: './Application.js'
+    app: './Application.js',
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: '[name].js'
+    filename: '[name].js',
   },
   target: 'electron-main',
   devtool: debug ? 'inline-sourcemap' : null,
@@ -22,15 +22,15 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
-          }
-        }
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
+        },
       },
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },
-      { test: /\.(png|woff|woff2|eot|ttf|svg)$/, use: ['url-loader'] }
-    ]
+      { test: /\.(png|woff|woff2|eot|ttf|svg)$/, use: ['url-loader'] },
+    ],
   },
   externals: [{
-    'electron-debug': 'electron-debug'
-  }]
+    'electron-debug': 'electron-debug',
+  }],
 }

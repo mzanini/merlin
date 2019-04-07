@@ -13,7 +13,8 @@ import {
   LOAD_SOCIAL_CLASSES,
   LOAD_MINOR_ABILITIES,
   DESTROY_ALL_RACES,
-  DESTROY_ALL_SOCIAL_CLASSES } from '../actionTypes'
+  DESTROY_ALL_SOCIAL_CLASSES,
+  DESTROY_ALL_MINOR_ABILITIES } from '../actionTypes'
 import { combineReducers } from 'redux'
 import ui from './ui'
 
@@ -90,6 +91,8 @@ function minorAbilities(state = initialState.minorAbilities, action) {
       return state = action.payload
     case CREATE_MINOR_ABILITY:
       return [...state, action.payload]
+    case DESTROY_ALL_MINOR_ABILITIES:
+      return initialState.minorAbilities
     default:
       return state
   }

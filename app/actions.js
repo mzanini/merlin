@@ -23,7 +23,8 @@ import {
   LOAD_SOCIAL_CLASSES,
   LOAD_MINOR_ABILITIES,
   DESTROY_ALL_RACES,
-  DESTROY_ALL_SOCIAL_CLASSES } from './actionTypes'
+  DESTROY_ALL_SOCIAL_CLASSES,
+  DESTROY_ALL_MINOR_ABILITIES } from './actionTypes'
 import db from './db'
 import fs from 'fs'
 import { rollFourSixSidedDie } from './utils'
@@ -305,6 +306,7 @@ export function loadMinorAbilitiesTable(fileName) {
   }
   return (dispatch) => {
     const payload = loadTable(fileName)
+    dispatch(destroyAllMinorAbilities())
     payload.table.forEach((row) => {
       row.abilities.forEach((ability) => {
         dispatch(createMinorAbility(row.chart, row.probability, ability.name, ability.number))
@@ -316,4 +318,12 @@ export function loadMinorAbilitiesTable(fileName) {
 
 export function setMinorAbilitiesTablePath(fileName) {
   return { type: SET_MINOR_ABILITIES_TABLE_PATH, payload: fileName }
+}
+
+export function destroyAllMinorAbilities() {
+  return (dispatch) => {
+    db.minorAbilities
+      .clear()
+      .then(() => { dispatch({ type: DESTROY_ALL_MINOR_ABILITIES }) })
+  }
 }

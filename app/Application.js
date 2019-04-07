@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import AppPage from './containers/AppPage'
 import MainPageHeader from './containers/MainPageHeader'
 import store from './store'
-import { loadGames, loadCharacters, loadRaces, loadSocialClasses, loadMinorAbilities } from './actions'
+import { loadGames, loadCharacters, loadRaces, loadSocialClasses, loadMinorAbilities, loaduiProperties } from './actions'
 import { MuiThemeProvider } from '@material-ui/core/styles'
 import { theme } from './theme'
 
@@ -25,5 +25,6 @@ store.dispatch(loadCharacters())
 store.dispatch(loadRaces())
 store.dispatch(loadSocialClasses())
 store.dispatch(loadMinorAbilities())
+store.dispatch(loaduiProperties())
 
 ReactDOM.render(<Provider store={store}><Application/></Provider>, document.querySelector('#app'))

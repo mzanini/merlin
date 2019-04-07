@@ -13,5 +13,8 @@ db.version(3).stores({
 db.version(4).stores({
   uiProperties: '++id, name, value',
 })
+db.version(5).stores({
+  uiProperties: '++id, [name]',
+})
 
 export default db

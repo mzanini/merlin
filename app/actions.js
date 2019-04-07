@@ -11,6 +11,7 @@ import {
   OPEN_SETTINGS,
   CLOSE_SETTINGS,
   MARK_ONBOARDING_AS_COMPLETE,
+  LOAD_UI_SETTING,
   DELETE_CHARACTER,
   UPDATE_CHARACTER,
   SHOW_CHARACTER_EDIT,
@@ -168,11 +169,35 @@ export function openSettings() {
 }
 
 export function markOnboardingAsComplete() {
-  return { type: MARK_ONBOARDING_AS_COMPLETE }
+  return (dispatch) => {
+    let uiProperty = { name: 'onBoardingCompleted', value: true }
+    db.table('uiProperties')
+      .add(uiProperty)
+      .then((id) => {
+        dispatch({
+          type: MARK_ONBOARDING_AS_COMPLETE,
+        })
+      })
+  }
 }
 
 export function closeSettings() {
   return { type: CLOSE_SETTINGS }
+}
+
+export function loaduiProperties() {
+  return (dispatch) => {
+    db.table('uiProperties')
+      .toArray()
+      .then((properties) => {
+        properties.forEach((property) => {
+          dispatch({
+            type: LOAD_UI_SETTING,
+            payload: { name: property.name, value: property.value },
+          })
+        })
+      })
+  }
 }
 
 export function loadRaces() {

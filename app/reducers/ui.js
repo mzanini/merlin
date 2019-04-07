@@ -11,6 +11,7 @@ import {
   SET_RACES_TABLE_PATH,
   SET_SOCIAL_CLASSES_TABLE_PATH,
   SET_MINOR_ABILITIES_TABLE_PATH,
+  LOAD_UI_SETTING,
 } from '../actionTypes'
 
 export const GAME_PAGE_CHARACTERS = 'characters'
@@ -54,6 +55,13 @@ export default function ui(state = initialState, action) {
       return { ...state, socialClassesTablePath: action.payload }
     case SET_MINOR_ABILITIES_TABLE_PATH:
       return { ...state, minorAbilitiesTablePath: action.payload }
+    case LOAD_UI_SETTING:
+      if (state.hasOwnProperty(action.payload.name)) {
+        let newPropertyValue = {}
+        newPropertyValue[action.payload.name] = action.payload.value
+        return { ...state, ...newPropertyValue }
+      }
+      // fallsthrough
     default:
       return state
   }

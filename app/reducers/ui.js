@@ -4,6 +4,8 @@ import {
   SHOW_GAME_PAGE,
   SHOW_GAME_LIST,
   OPEN_SETTINGS,
+  CLOSE_SETTINGS,
+  MARK_ONBOARDING_AS_COMPLETE,
   SHOW_CHARACTER_EDIT,
   CLOSE_CHARACTER_EDIT,
   SET_RACES_TABLE_PATH,
@@ -38,6 +40,10 @@ export default function ui(state = initialState, action) {
       return { ...state, gamePage: action.payload, settingsOpen: false }
     case OPEN_SETTINGS:
       return { ...state, settingsOpen: true }
+    case CLOSE_SETTINGS:
+      return { ...state, settingsOpen: false }
+    case MARK_ONBOARDING_AS_COMPLETE:
+      return { ...state, onBoardingCompleted: true }
     case SHOW_CHARACTER_EDIT:
       return { ...state, selectedCharacterId: action.payload }
     case CLOSE_CHARACTER_EDIT:

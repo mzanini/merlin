@@ -9,6 +9,8 @@ import {
   LOAD_CHARACTERS,
   SHOW_GAME_PAGE,
   OPEN_SETTINGS,
+  CLOSE_SETTINGS,
+  MARK_ONBOARDING_AS_COMPLETE,
   DELETE_CHARACTER,
   UPDATE_CHARACTER,
   SHOW_CHARACTER_EDIT,
@@ -163,6 +165,14 @@ export function closeCharacterEditModal() {
 
 export function openSettings() {
   return { type: OPEN_SETTINGS }
+}
+
+export function markOnboardingAsComplete() {
+  return { type: MARK_ONBOARDING_AS_COMPLETE }
+}
+
+export function closeSettings() {
+  return { type: CLOSE_SETTINGS }
 }
 
 export function loadRaces() {

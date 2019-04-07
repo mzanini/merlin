@@ -15,25 +15,22 @@ class SetupStepper extends React.Component {
 
     this.handleNext = this.handleNext.bind(this)
     this.handleBack = this.handleBack.bind(this)
-    this.handleReset = this.handleReset.bind(this)
   }
 
   handleNext() {
-    this.setState({
-      activeStep: this.state.activeStep + 1,
-    })
+    if (this.state.activeStep === 2) {
+      this.props.markOnboardingAsComplete()
+    } else {
+      this.setState({
+        activeStep: this.state.activeStep + 1,
+      })
+    }
   }
 
   handleBack() {
     this.setState(state => ({
       activeStep: state.activeStep - 1,
     }))
-  }
-
-  handleReset() {
-    this.setState({
-      activeStep: 0,
-    })
   }
 
   render() {
@@ -62,7 +59,6 @@ class SetupStepper extends React.Component {
           Back
         </Button>
         <Button
-          disabled={activeStep === this.props.steps.length - 1}
           onClick={this.handleNext}
         >
           Next
@@ -76,4 +72,5 @@ export default SetupStepper
 
 SetupStepper.propTypes = {
   steps: PropTypes.array,
+  markOnboardingAsComplete: PropTypes.func,
 }

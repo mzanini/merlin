@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import SetupStepper from '../components/SetupStepper'
+import { markOnboardingAsComplete } from '../actions'
 
 const mapStateToProps = state => {
   return {
@@ -7,8 +8,15 @@ const mapStateToProps = state => {
   }
 }
 
+const mapDispatchToProps = dispatch => (
+  {
+    markOnboardingAsComplete: () => dispatch(markOnboardingAsComplete()),
+  }
+)
+
 const TablesSetup = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(SetupStepper)
 
 export default TablesSetup

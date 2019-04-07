@@ -22,18 +22,17 @@ import {
   LOAD_RACES,
   LOAD_SOCIAL_CLASSES,
   LOAD_MINOR_ABILITIES,
-  DESTROY_ALL_RACES } from './actionTypes'
+  DESTROY_ALL_RACES,
+  DESTROY_ALL_SOCIAL_CLASSES } from './actionTypes'
 import db from './db'
 import fs from 'fs'
 import { rollFourSixSidedDie } from './utils'
 
 function loadTable(fileName) {
-  console.log('table selected: ' + fileName)
   const payload = {
     table: JSON.parse(fs.readFileSync(fileName)),
     tablePath: fileName,
   }
-  console.log(payload.table)
   return payload
 }
 
@@ -186,7 +185,6 @@ export function loadRacesTable(fileName) {
     const payload = loadTable(fileName)
     dispatch(destroyAllRaces())
     payload.table.forEach((row) => {
-      console.log(row)
       dispatch(createRace(row.name, row.probability))
     })
     dispatch(setRacesTablePath(fileName))
@@ -212,6 +210,14 @@ export function destroyAllRaces() {
     db.races
       .clear()
       .then(() => { dispatch({ type: DESTROY_ALL_RACES }) })
+  }
+}
+
+export function destroyAllSocialClasses() {
+  return (dispatch) => {
+    db.socialClasses
+      .clear()
+      .then(() => { dispatch({ type: DESTROY_ALL_SOCIAL_CLASSES }) })
   }
 }
 
@@ -252,10 +258,9 @@ export function loadSocialClassesTable(fileName) {
   }
   return (dispatch) => {
     const payload = loadTable(fileName)
+    dispatch(destroyAllSocialClasses())
     payload.table.forEach((row) => {
-      console.log(row)
       row.probabilities.forEach((socialClass) => {
-        console.log(socialClass)
         dispatch(createSocialClass(row.race, socialClass.name, socialClass.probability))
       })
     })
@@ -301,9 +306,7 @@ export function loadMinorAbilitiesTable(fileName) {
   return (dispatch) => {
     const payload = loadTable(fileName)
     payload.table.forEach((row) => {
-      console.log(row)
       row.abilities.forEach((ability) => {
-        console.log(ability)
         dispatch(createMinorAbility(row.chart, row.probability, ability.name, ability.number))
       })
     })

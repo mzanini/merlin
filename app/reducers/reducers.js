@@ -12,7 +12,8 @@ import {
   LOAD_RACES,
   LOAD_SOCIAL_CLASSES,
   LOAD_MINOR_ABILITIES,
-  DESTROY_ALL_RACES } from '../actionTypes'
+  DESTROY_ALL_RACES,
+  DESTROY_ALL_SOCIAL_CLASSES } from '../actionTypes'
 import { combineReducers } from 'redux'
 import ui from './ui'
 
@@ -76,6 +77,8 @@ function socialClasses(state = initialState.socialClasses, action) {
       return state = action.payload
     case CREATE_SOCIAL_CLASS:
       return [...state, action.payload]
+    case DESTROY_ALL_SOCIAL_CLASSES:
+      return initialState.socialClasses
     default:
       return state
   }

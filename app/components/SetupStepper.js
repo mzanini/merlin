@@ -20,6 +20,7 @@ class SetupStepper extends React.Component {
   handleNext() {
     if (this.state.activeStep === 2) {
       this.props.markOnboardingAsComplete()
+      this.props.closeSettings()
     } else {
       this.setState({
         activeStep: this.state.activeStep + 1,
@@ -73,4 +74,5 @@ export default SetupStepper
 SetupStepper.propTypes = {
   steps: PropTypes.array,
   markOnboardingAsComplete: PropTypes.func,
+  closeSettings: PropTypes.func,
 }

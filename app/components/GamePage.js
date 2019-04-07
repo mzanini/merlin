@@ -5,7 +5,7 @@ import GameCharactersList from '../containers/GameCharactersList'
 import ActiveBottomNavigation from '../containers/ActiveBottomNavigation'
 import CharacterEdit from '../containers/CharacterEdit'
 import RollPage from './RollPage'
-import { GAME_PAGE_ROLL } from '../reducers'
+import { GAME_PAGE_ROLL } from '../reducers/ui'
 
 const GamePage = ({ showPage, isCharacterEditOpen }) => {
   let actualPage = (
@@ -15,8 +15,9 @@ const GamePage = ({ showPage, isCharacterEditOpen }) => {
       <CharacterNameInput/>
     </React.Fragment>
   )
-  if (showPage === GAME_PAGE_ROLL)
+  if (showPage === GAME_PAGE_ROLL) {
     actualPage = <RollPage/>
+  }
 
   return (
     <React.Fragment>
@@ -28,7 +29,7 @@ const GamePage = ({ showPage, isCharacterEditOpen }) => {
 
 GamePage.propTypes = {
   showPage: PropTypes.string,
-  isCharacterEditOpen: PropTypes.bool
+  isCharacterEditOpen: PropTypes.bool,
 }
 
 export default GamePage

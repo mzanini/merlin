@@ -5,7 +5,7 @@ const mapStateToProps = state => {
   const isCharacterEditOpen = state.ui.selectedCharacterId !== null
   return {
     showPage: state.ui.gamePage,
-    isCharacterEditOpen: isCharacterEditOpen
+    isCharacterEditOpen: isCharacterEditOpen,
   }
 }
 

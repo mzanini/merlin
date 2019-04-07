@@ -10,5 +10,8 @@ db.version(3).stores({
   socialClasses: '++id',
   minorAbilities: '++id',
 })
+db.version(4).stores({
+  uiProperties: '++id, name, value',
+})
 
 export default db

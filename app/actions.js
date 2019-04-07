@@ -21,7 +21,8 @@ import {
   SET_MINOR_ABILITIES_TABLE_PATH,
   LOAD_RACES,
   LOAD_SOCIAL_CLASSES,
-  LOAD_MINOR_ABILITIES } from './actionTypes'
+  LOAD_MINOR_ABILITIES,
+  DESTROY_ALL_RACES } from './actionTypes'
 import db from './db'
 import fs from 'fs'
 import { rollFourSixSidedDie } from './utils'
@@ -183,6 +184,7 @@ export function loadRacesTable(fileName) {
   }
   return (dispatch) => {
     const payload = loadTable(fileName)
+    dispatch(destroyAllRaces())
     payload.table.forEach((row) => {
       console.log(row)
       dispatch(createRace(row.name, row.probability))
@@ -202,6 +204,14 @@ export function createRace(name, probability) {
           payload: Object.assign({}, raceToAdd, { id }),
         })
       })
+  }
+}
+
+export function destroyAllRaces() {
+  return (dispatch) => {
+    db.races
+      .clear()
+      .then(() => { dispatch({ type: DESTROY_ALL_RACES }) })
   }
 }
 

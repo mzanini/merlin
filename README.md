@@ -21,7 +21,7 @@ npm run test
 ```
 ## Deployment
 
-Build for Windows:
+Build for Windows with `electron-builder`, instructions taken from [here](https://www.electron.build/multi-platform-build#docker):
 
 1. Make sure the docker daemon is running:
     ```
@@ -30,10 +30,18 @@ Build for Windows:
 2. Run docker container:
 
    ```
-   docker run --rm -ti -v ${PWD}:/project -v ${PWD##*/}-node-modules:/project/node_modules -v ~/.electron:/root/.electron electronuserland/electron-builder:wine
+   docker run --rm -ti \
+    --env-file <(env | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS_TAG|TRAVIS|TRAVIS_REPO_|TRAVIS_BUILD_|TRAVIS_BRANCH|TRAVIS_PULL_REQUEST_|APPVEYOR_|CSC_|GH_|GITHUB_|BT_|AWS_|STRIP|BUILD_') \
+    --env ELECTRON_CACHE="/root/.cache/electron" \
+    --env ELECTRON_BUILDER_CACHE="/root/.cache/electron-builder" \
+    -v ${PWD}:/project \
+    -v ${PWD##*/}-node-modules:/project/node_modules \
+    -v ~/.cache/electron:/root/.cache/electron \
+    -v ~/.cache/electron-builder:/root/.cache/electron-builder \
+    electronuserland/builder:wine
    ```
 
-3. Type in `npm install && npm prune && npm run distWin`
+3. Type in `yarn && yarn distWin`
 
 ## Built With
 

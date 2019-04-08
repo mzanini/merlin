@@ -30,7 +30,7 @@
     "start": "electron .",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
-    "distWin": "build --win",
+    "distWin": "electron-builder --win",
     "lint": "eslint --ignore-path .gitignore .",
     "precommit": "lint-staged",
     "dev": "webpack --config build/webpack.config.js --progress --colors --watch --mode development",

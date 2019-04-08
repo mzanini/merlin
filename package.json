@@ -1,18 +1,18 @@
 {
-  "name": "deeMemory",
-  "productName": "DeeMemory",
+  "name": "merlin",
   "version": "1.0.0",
   "description": "A tool to help a Dungeon Master",
   "license": "MIT",
   "repository": "user/repo",
   "author": {
     "name": "Marco Zanini",
-    "email": "chetto87+deeMemory@gmail.com",
+    "email": "chetto87+merlin@gmail.com",
     "url": "http://www.marcozanini.it"
   },
   "main": "app/background.js",
   "build": {
-    "appId": "deeMemory.id",
+    "appId": "com.electron.merlin",
+    "productName": "merlin",
     "linux": {
       "target": "pacman"
     },
@@ -28,9 +28,8 @@
     "postinstall": "electron-builder install-app-deps",
     "unit": "jest --verbose",
     "start": "electron .",
-    "build": "electron-packager . --out=dist --asar --overwrite --all",
-    "pack": "build --dir",
-    "dist": "build",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
     "distWin": "build --win",
     "lint": "eslint --ignore-path .gitignore .",
     "precommit": "lint-staged",

@@ -1,7 +1,7 @@
 FROM node:12.9.1
 
 RUN npm install -g yarn@1.16.0
-RUN apt-get update && apt-get install -y libgtk-3-0 libxss1 libgconf-2-4 libnss3 libasound2
+RUN apt-get update && apt-get install -y libgtk-3-0 libxss1 libgconf-2-4 libnss3 libasound2 libcanberra-gtk3-module
 
 WORKDIR /app
 

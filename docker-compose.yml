@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  clerk:
+    build:
+      context: .
+    image: merlin
+    container_name: merlin
+    user: ${CURRENT_UID} # https://medium.com/redbubble/running-a-docker-container-as-a-non-root-user-7d2e00f8ee15
+    ports:
+      - '8081:8081'
+    volumes:
+      - .:/app
+      - /app/node_modules # prevents the container from polluting local directory

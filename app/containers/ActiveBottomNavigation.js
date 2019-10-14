@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import BottomGameNavigation from '../components/BottomGameNavigation'
 import { showGamePage } from '../actions'
-import { GAME_PAGE_CHARACTERS, GAME_PAGE_ROLL } from '../reducers/reducers'
+import { GAME_PAGE_CHARACTERS, GAME_PAGE_ROLL } from '../reducers/ui'
 
 const mapDispatchToProps = dispatch => (
   {

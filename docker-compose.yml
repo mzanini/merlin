@@ -6,12 +6,13 @@ services:
     image: merlin
     container_name: merlin
     network_mode: host
+    privileged: true # https://github.com/jessfraz/dockerfiles/issues/350
     environment:
       - DISPLAY
     user: ${CURRENT_UID} # https://medium.com/redbubble/running-a-docker-container-as-a-non-root-user-7d2e00f8ee15
     ports:
       - '8081:8081'
-    #command: 'yarn dev'
+    command: 'yarn dev'
     volumes:
       - .:/app
       - /app/node_modules # prevents the container from polluting local directory
